@@ -1,0 +1,507 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		97866CA71C45498D00AAE416 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97866CA61C45498D00AAE416 /* AppDelegate.swift */; };
+		97866CA91C45498D00AAE416 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97866CA81C45498D00AAE416 /* ViewController.swift */; };
+		97866CAC1C45498D00AAE416 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97866CAA1C45498D00AAE416 /* Main.storyboard */; };
+		97866CAE1C45498D00AAE416 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 97866CAD1C45498D00AAE416 /* Assets.xcassets */; };
+		97866CB11C45498D00AAE416 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97866CAF1C45498D00AAE416 /* LaunchScreen.storyboard */; };
+		97866CBC1C45498D00AAE416 /* SwiftyPDFTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97866CBB1C45498D00AAE416 /* SwiftyPDFTests.swift */; };
+		97866CC71C45498D00AAE416 /* SwiftyPDFUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97866CC61C45498D00AAE416 /* SwiftyPDFUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		97866CB81C45498D00AAE416 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 97866C9B1C45498D00AAE416 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 97866CA21C45498D00AAE416;
+			remoteInfo = SwiftyPDF;
+		};
+		97866CC31C45498D00AAE416 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 97866C9B1C45498D00AAE416 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 97866CA21C45498D00AAE416;
+			remoteInfo = SwiftyPDF;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		97866CA31C45498D00AAE416 /* SwiftyPDF.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftyPDF.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		97866CA61C45498D00AAE416 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		97866CA81C45498D00AAE416 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		97866CAB1C45498D00AAE416 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		97866CAD1C45498D00AAE416 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		97866CB01C45498D00AAE416 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		97866CB21C45498D00AAE416 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		97866CB71C45498D00AAE416 /* SwiftyPDFTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftyPDFTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		97866CBB1C45498D00AAE416 /* SwiftyPDFTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyPDFTests.swift; sourceTree = "<group>"; };
+		97866CBD1C45498D00AAE416 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		97866CC21C45498D00AAE416 /* SwiftyPDFUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftyPDFUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		97866CC61C45498D00AAE416 /* SwiftyPDFUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyPDFUITests.swift; sourceTree = "<group>"; };
+		97866CC81C45498D00AAE416 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		97866CA01C45498D00AAE416 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		97866CB41C45498D00AAE416 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		97866CBF1C45498D00AAE416 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		97866C9A1C45498D00AAE416 = {
+			isa = PBXGroup;
+			children = (
+				97866CA51C45498D00AAE416 /* SwiftyPDF */,
+				97866CBA1C45498D00AAE416 /* SwiftyPDFTests */,
+				97866CC51C45498D00AAE416 /* SwiftyPDFUITests */,
+				97866CA41C45498D00AAE416 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		97866CA41C45498D00AAE416 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				97866CA31C45498D00AAE416 /* SwiftyPDF.app */,
+				97866CB71C45498D00AAE416 /* SwiftyPDFTests.xctest */,
+				97866CC21C45498D00AAE416 /* SwiftyPDFUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		97866CA51C45498D00AAE416 /* SwiftyPDF */ = {
+			isa = PBXGroup;
+			children = (
+				97866CA61C45498D00AAE416 /* AppDelegate.swift */,
+				97866CA81C45498D00AAE416 /* ViewController.swift */,
+				97866CAA1C45498D00AAE416 /* Main.storyboard */,
+				97866CAD1C45498D00AAE416 /* Assets.xcassets */,
+				97866CAF1C45498D00AAE416 /* LaunchScreen.storyboard */,
+				97866CB21C45498D00AAE416 /* Info.plist */,
+			);
+			path = SwiftyPDF;
+			sourceTree = "<group>";
+		};
+		97866CBA1C45498D00AAE416 /* SwiftyPDFTests */ = {
+			isa = PBXGroup;
+			children = (
+				97866CBB1C45498D00AAE416 /* SwiftyPDFTests.swift */,
+				97866CBD1C45498D00AAE416 /* Info.plist */,
+			);
+			path = SwiftyPDFTests;
+			sourceTree = "<group>";
+		};
+		97866CC51C45498D00AAE416 /* SwiftyPDFUITests */ = {
+			isa = PBXGroup;
+			children = (
+				97866CC61C45498D00AAE416 /* SwiftyPDFUITests.swift */,
+				97866CC81C45498D00AAE416 /* Info.plist */,
+			);
+			path = SwiftyPDFUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		97866CA21C45498D00AAE416 /* SwiftyPDF */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 97866CCB1C45498D00AAE416 /* Build configuration list for PBXNativeTarget "SwiftyPDF" */;
+			buildPhases = (
+				97866C9F1C45498D00AAE416 /* Sources */,
+				97866CA01C45498D00AAE416 /* Frameworks */,
+				97866CA11C45498D00AAE416 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SwiftyPDF;
+			productName = SwiftyPDF;
+			productReference = 97866CA31C45498D00AAE416 /* SwiftyPDF.app */;
+			productType = "com.apple.product-type.application";
+		};
+		97866CB61C45498D00AAE416 /* SwiftyPDFTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 97866CCE1C45498D00AAE416 /* Build configuration list for PBXNativeTarget "SwiftyPDFTests" */;
+			buildPhases = (
+				97866CB31C45498D00AAE416 /* Sources */,
+				97866CB41C45498D00AAE416 /* Frameworks */,
+				97866CB51C45498D00AAE416 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				97866CB91C45498D00AAE416 /* PBXTargetDependency */,
+			);
+			name = SwiftyPDFTests;
+			productName = SwiftyPDFTests;
+			productReference = 97866CB71C45498D00AAE416 /* SwiftyPDFTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		97866CC11C45498D00AAE416 /* SwiftyPDFUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 97866CD11C45498D00AAE416 /* Build configuration list for PBXNativeTarget "SwiftyPDFUITests" */;
+			buildPhases = (
+				97866CBE1C45498D00AAE416 /* Sources */,
+				97866CBF1C45498D00AAE416 /* Frameworks */,
+				97866CC01C45498D00AAE416 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				97866CC41C45498D00AAE416 /* PBXTargetDependency */,
+			);
+			name = SwiftyPDFUITests;
+			productName = SwiftyPDFUITests;
+			productReference = 97866CC21C45498D00AAE416 /* SwiftyPDFUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		97866C9B1C45498D00AAE416 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0720;
+				LastUpgradeCheck = 0720;
+				ORGANIZATIONNAME = 100kas;
+				TargetAttributes = {
+					97866CA21C45498D00AAE416 = {
+						CreatedOnToolsVersion = 7.2;
+					};
+					97866CB61C45498D00AAE416 = {
+						CreatedOnToolsVersion = 7.2;
+						TestTargetID = 97866CA21C45498D00AAE416;
+					};
+					97866CC11C45498D00AAE416 = {
+						CreatedOnToolsVersion = 7.2;
+						TestTargetID = 97866CA21C45498D00AAE416;
+					};
+				};
+			};
+			buildConfigurationList = 97866C9E1C45498D00AAE416 /* Build configuration list for PBXProject "SwiftyPDF" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 97866C9A1C45498D00AAE416;
+			productRefGroup = 97866CA41C45498D00AAE416 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				97866CA21C45498D00AAE416 /* SwiftyPDF */,
+				97866CB61C45498D00AAE416 /* SwiftyPDFTests */,
+				97866CC11C45498D00AAE416 /* SwiftyPDFUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		97866CA11C45498D00AAE416 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				97866CB11C45498D00AAE416 /* LaunchScreen.storyboard in Resources */,
+				97866CAE1C45498D00AAE416 /* Assets.xcassets in Resources */,
+				97866CAC1C45498D00AAE416 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		97866CB51C45498D00AAE416 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		97866CC01C45498D00AAE416 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		97866C9F1C45498D00AAE416 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				97866CA91C45498D00AAE416 /* ViewController.swift in Sources */,
+				97866CA71C45498D00AAE416 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		97866CB31C45498D00AAE416 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				97866CBC1C45498D00AAE416 /* SwiftyPDFTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		97866CBE1C45498D00AAE416 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				97866CC71C45498D00AAE416 /* SwiftyPDFUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		97866CB91C45498D00AAE416 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 97866CA21C45498D00AAE416 /* SwiftyPDF */;
+			targetProxy = 97866CB81C45498D00AAE416 /* PBXContainerItemProxy */;
+		};
+		97866CC41C45498D00AAE416 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 97866CA21C45498D00AAE416 /* SwiftyPDF */;
+			targetProxy = 97866CC31C45498D00AAE416 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		97866CAA1C45498D00AAE416 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				97866CAB1C45498D00AAE416 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		97866CAF1C45498D00AAE416 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				97866CB01C45498D00AAE416 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		97866CC91C45498D00AAE416 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		97866CCA1C45498D00AAE416 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		97866CCC1C45498D00AAE416 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = SwiftyPDF/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.100kas.SwiftyPDF;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		97866CCD1C45498D00AAE416 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = SwiftyPDF/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.100kas.SwiftyPDF;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		97866CCF1C45498D00AAE416 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = SwiftyPDFTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.100kas.SwiftyPDFTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SwiftyPDF.app/SwiftyPDF";
+			};
+			name = Debug;
+		};
+		97866CD01C45498D00AAE416 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = SwiftyPDFTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.100kas.SwiftyPDFTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SwiftyPDF.app/SwiftyPDF";
+			};
+			name = Release;
+		};
+		97866CD21C45498D00AAE416 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = SwiftyPDFUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.100kas.SwiftyPDFUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = SwiftyPDF;
+				USES_XCTRUNNER = YES;
+			};
+			name = Debug;
+		};
+		97866CD31C45498D00AAE416 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = SwiftyPDFUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.100kas.SwiftyPDFUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = SwiftyPDF;
+				USES_XCTRUNNER = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		97866C9E1C45498D00AAE416 /* Build configuration list for PBXProject "SwiftyPDF" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				97866CC91C45498D00AAE416 /* Debug */,
+				97866CCA1C45498D00AAE416 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		97866CCB1C45498D00AAE416 /* Build configuration list for PBXNativeTarget "SwiftyPDF" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				97866CCC1C45498D00AAE416 /* Debug */,
+				97866CCD1C45498D00AAE416 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		97866CCE1C45498D00AAE416 /* Build configuration list for PBXNativeTarget "SwiftyPDFTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				97866CCF1C45498D00AAE416 /* Debug */,
+				97866CD01C45498D00AAE416 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		97866CD11C45498D00AAE416 /* Build configuration list for PBXNativeTarget "SwiftyPDFUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				97866CD21C45498D00AAE416 /* Debug */,
+				97866CD31C45498D00AAE416 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 97866C9B1C45498D00AAE416 /* Project object */;
+}
