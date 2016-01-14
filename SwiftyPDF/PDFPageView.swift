@@ -10,7 +10,7 @@ import UIKit
 
 class PDFPageView: UIView
 {
-    var zoom: CGFloat = 1
+    var zoom: CGFloat = 0.5
     var tiledLayer = CATiledLayer()
 
     /*

@@ -74,9 +74,29 @@ class ViewController: UIViewController {
                 
                 let page = CGPDFDocumentGetPage(document(), 1)!
                 vc.tiledDelegate = TiledDelegate(page: page)
+                
+                currentPageIdx = 0
             }
             
             pageController.setViewControllers([viewControllers[0]!], direction: .Forward, animated: false, completion: nil)
+        }
+    }
+    
+    @IBAction func zoom2x(sender: AnyObject)
+    {
+        if let vc = viewControllers[currentPageIdx!]
+        {
+            vc.pdfPageView.zoom *= 2
+            vc.pdfPageView.tiledLayer.transform = CATransform3DMakeScale(vc.pdfPageView.zoom, vc.pdfPageView.zoom, 1.0)
+        }
+    }
+
+    @IBAction func zoomOut(sender: AnyObject)
+    {
+        if let vc = viewControllers[currentPageIdx!]
+        {
+            vc.pdfPageView.zoom /= 2
+            vc.pdfPageView.tiledLayer.transform = CATransform3DMakeScale(vc.pdfPageView.zoom, vc.pdfPageView.zoom, 1.0)
         }
     }
 }
