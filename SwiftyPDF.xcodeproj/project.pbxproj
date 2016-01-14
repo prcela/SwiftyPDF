@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		977AABF11C47B77100CC5572 /* SinglePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 977AABF01C47B77100CC5572 /* SinglePageViewController.swift */; };
+		977AABF31C47C40000CC5572 /* sample.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 977AABF21C47C40000CC5572 /* sample.pdf */; };
 		97866CA71C45498D00AAE416 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97866CA61C45498D00AAE416 /* AppDelegate.swift */; };
 		97866CA91C45498D00AAE416 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97866CA81C45498D00AAE416 /* ViewController.swift */; };
 		97866CAC1C45498D00AAE416 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97866CAA1C45498D00AAE416 /* Main.storyboard */; };
@@ -34,6 +36,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		977AABF01C47B77100CC5572 /* SinglePageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SinglePageViewController.swift; sourceTree = "<group>"; };
+		977AABF21C47C40000CC5572 /* sample.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = sample.pdf; sourceTree = "<group>"; };
 		97866CA31C45498D00AAE416 /* SwiftyPDF.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftyPDF.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		97866CA61C45498D00AAE416 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		97866CA81C45498D00AAE416 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -74,6 +78,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		977AABF41C47C40A00CC5572 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				977AABF21C47C40000CC5572 /* sample.pdf */,
+			);
+			name = Resources;
+			path = ..;
+			sourceTree = "<group>";
+		};
 		97866C9A1C45498D00AAE416 = {
 			isa = PBXGroup;
 			children = (
@@ -103,6 +116,8 @@
 				97866CAD1C45498D00AAE416 /* Assets.xcassets */,
 				97866CAF1C45498D00AAE416 /* LaunchScreen.storyboard */,
 				97866CB21C45498D00AAE416 /* Info.plist */,
+				977AABF01C47B77100CC5572 /* SinglePageViewController.swift */,
+				977AABF41C47C40A00CC5572 /* Resources */,
 			);
 			path = SwiftyPDF;
 			sourceTree = "<group>";
@@ -229,6 +244,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				977AABF31C47C40000CC5572 /* sample.pdf in Resources */,
 				97866CB11C45498D00AAE416 /* LaunchScreen.storyboard in Resources */,
 				97866CAE1C45498D00AAE416 /* Assets.xcassets in Resources */,
 				97866CAC1C45498D00AAE416 /* Main.storyboard in Resources */,
@@ -257,6 +273,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				97866CA91C45498D00AAE416 /* ViewController.swift in Sources */,
+				977AABF11C47B77100CC5572 /* SinglePageViewController.swift in Sources */,
 				97866CA71C45498D00AAE416 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -400,6 +417,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = SwiftyPDF/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.100kas.SwiftyPDF;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -411,6 +429,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = SwiftyPDF/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.100kas.SwiftyPDF;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -484,6 +503,7 @@
 				97866CCD1C45498D00AAE416 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		97866CCE1C45498D00AAE416 /* Build configuration list for PBXNativeTarget "SwiftyPDFTests" */ = {
 			isa = XCConfigurationList;
@@ -492,6 +512,7 @@
 				97866CD01C45498D00AAE416 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		97866CD11C45498D00AAE416 /* Build configuration list for PBXNativeTarget "SwiftyPDFUITests" */ = {
 			isa = XCConfigurationList;
@@ -500,6 +521,7 @@
 				97866CD31C45498D00AAE416 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
