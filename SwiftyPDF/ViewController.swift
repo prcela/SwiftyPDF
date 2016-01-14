@@ -71,6 +71,9 @@ class ViewController: UIViewController {
             {
                 let vc = storyboard!.instantiateViewControllerWithIdentifier("pdfPage") as! SinglePageViewController
                 viewControllers[0] = vc
+                
+                let page = CGPDFDocumentGetPage(document(), 1)!
+                vc.tiledDelegate = TiledDelegate(page: page)
             }
             
             pageController.setViewControllers([viewControllers[0]!], direction: .Forward, animated: false, completion: nil)
@@ -90,6 +93,10 @@ extension ViewController: UIPageViewControllerDataSource
             {
                 nextVC = storyboard!.instantiateViewControllerWithIdentifier("pdfPage") as? SinglePageViewController
                 viewControllers[idx+1] = nextVC
+                
+                let page = CGPDFDocumentGetPage(document(), idx+2)!
+                nextVC!.tiledDelegate = TiledDelegate(page: page)
+
             }
             return nextVC
         }
@@ -105,6 +112,10 @@ extension ViewController: UIPageViewControllerDataSource
             {
                 prevVC = storyboard!.instantiateViewControllerWithIdentifier("pdfPage") as? SinglePageViewController
                 viewControllers[idx-1] = prevVC
+                
+                let page = CGPDFDocumentGetPage(document(), idx)!
+                prevVC!.tiledDelegate = TiledDelegate(page: page)
+
             }
             
             return prevVC

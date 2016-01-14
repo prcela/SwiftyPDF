@@ -10,10 +10,17 @@ import UIKit
 
 class SinglePageViewController: UIViewController {
 
+    var tiledDelegate: TiledDelegate!
+    
+    @IBOutlet weak var pdfPageView: PDFPageView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        pdfPageView.tiledLayer.delegate = tiledDelegate
+        
+        pdfPageView.setup()
     }
 
     override func didReceiveMemoryWarning() {

@@ -56,8 +56,17 @@
                     <view key="view" contentMode="scaleToFill" id="2jk-3B-UOs">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0l8-cx-aBU" customClass="PDFPageView" customModule="SwiftyPDF" customModuleProvider="target">
+                                <rect key="frame" x="20" y="28" width="555" height="552"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="pdfPageView" destination="0l8-cx-aBU" id="4jf-88-7YX"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EHF-u5-krd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

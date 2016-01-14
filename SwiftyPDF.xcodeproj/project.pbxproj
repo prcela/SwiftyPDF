@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		977AABF11C47B77100CC5572 /* SinglePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 977AABF01C47B77100CC5572 /* SinglePageViewController.swift */; };
 		977AABF31C47C40000CC5572 /* sample.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 977AABF21C47C40000CC5572 /* sample.pdf */; };
+		977AABF61C47CDDA00CC5572 /* PDFPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 977AABF51C47CDDA00CC5572 /* PDFPageView.swift */; };
+		977AABF81C47D27800CC5572 /* TiledDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 977AABF71C47D27800CC5572 /* TiledDelegate.swift */; };
 		97866CA71C45498D00AAE416 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97866CA61C45498D00AAE416 /* AppDelegate.swift */; };
 		97866CA91C45498D00AAE416 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97866CA81C45498D00AAE416 /* ViewController.swift */; };
 		97866CAC1C45498D00AAE416 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97866CAA1C45498D00AAE416 /* Main.storyboard */; };
@@ -38,6 +40,8 @@
 /* Begin PBXFileReference section */
 		977AABF01C47B77100CC5572 /* SinglePageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SinglePageViewController.swift; sourceTree = "<group>"; };
 		977AABF21C47C40000CC5572 /* sample.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = sample.pdf; sourceTree = "<group>"; };
+		977AABF51C47CDDA00CC5572 /* PDFPageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDFPageView.swift; sourceTree = "<group>"; };
+		977AABF71C47D27800CC5572 /* TiledDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TiledDelegate.swift; sourceTree = "<group>"; };
 		97866CA31C45498D00AAE416 /* SwiftyPDF.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftyPDF.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		97866CA61C45498D00AAE416 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		97866CA81C45498D00AAE416 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -117,7 +121,9 @@
 				97866CAF1C45498D00AAE416 /* LaunchScreen.storyboard */,
 				97866CB21C45498D00AAE416 /* Info.plist */,
 				977AABF01C47B77100CC5572 /* SinglePageViewController.swift */,
+				977AABF51C47CDDA00CC5572 /* PDFPageView.swift */,
 				977AABF41C47C40A00CC5572 /* Resources */,
+				977AABF71C47D27800CC5572 /* TiledDelegate.swift */,
 			);
 			path = SwiftyPDF;
 			sourceTree = "<group>";
@@ -274,6 +280,8 @@
 			files = (
 				97866CA91C45498D00AAE416 /* ViewController.swift in Sources */,
 				977AABF11C47B77100CC5572 /* SinglePageViewController.swift in Sources */,
+				977AABF61C47CDDA00CC5572 /* PDFPageView.swift in Sources */,
+				977AABF81C47D27800CC5572 /* TiledDelegate.swift in Sources */,
 				97866CA71C45498D00AAE416 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
