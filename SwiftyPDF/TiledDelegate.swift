@@ -26,7 +26,7 @@ class TiledDelegate: NSObject
         CGContextSaveGState(ctx)
         CGContextTranslateCTM(ctx, 0.0, pageRect.size.height)
         CGContextScaleCTM(ctx, 1.0, -1.0)
-        CGContextConcatCTM(ctx, CGPDFPageGetDrawingTransform(page, CGPDFBox.MediaBox, pageRect, 0, true))
+        CGContextConcatCTM(ctx, CGPDFPageGetDrawingTransform(page, CGPDFBox.CropBox, pageRect, 0, true))
         
 
         CGContextDrawPDFPage(ctx, page)

@@ -12,15 +12,38 @@ class SinglePageViewController: UIViewController {
 
     var tiledDelegate: TiledDelegate!
     
-    @IBOutlet weak var pdfPageView: PDFPageView!
+    var pdfPageView: PDFPageView?
+    
+    @IBOutlet weak var scrollView: UIScrollView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        scrollView.layoutIfNeeded()
 
         // Do any additional setup after loading the view.
-        pdfPageView.tiledLayer.delegate = tiledDelegate
-        pdfPageView.layoutIfNeeded()
-        pdfPageView.setup()
+        pdfPageView = PDFPageView()
+        let pageRect = CGPDFPageGetBoxRect(tiledDelegate.page, .CropBox)
+        pdfPageView?.frame = pageRect
+        scrollView.addSubview(pdfPageView!)
+        
+        print("pdfPageBoxRect \(pageRect)")
+        
+        pdfPageView?.tiledLayer.delegate = tiledDelegate
+        pdfPageView?.layoutIfNeeded()
+        pdfPageView?.setup()
+        
+        scrollView.contentSize = pdfPageView!.frame.size
+        
+        // Set up the minimum & maximum zoom scales
+        let scrollViewFrame = scrollView.frame
+        let scaleWidth = scrollViewFrame.size.width / scrollView.contentSize.width
+        let scaleHeight = scrollViewFrame.size.height / scrollView.contentSize.height
+        let minScale = min(scaleWidth, scaleHeight)
+        
+        scrollView.minimumZoomScale = minScale
+        scrollView.maximumZoomScale = 2.0
+        scrollView.zoomScale = minScale
     }
 
     override func didReceiveMemoryWarning() {
@@ -39,4 +62,11 @@ class SinglePageViewController: UIViewController {
     }
     */
 
+}
+
+extension SinglePageViewController: UIScrollViewDelegate
+{
+    func viewForZoomingInScrollView(scrollView: UIScrollView) -> UIView? {
+        return pdfPageView
+    }
 }

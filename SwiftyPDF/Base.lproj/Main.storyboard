@@ -3,7 +3,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -24,38 +23,12 @@
                                     <segue destination="NWc-87-WPH" kind="embed" identifier="embed" id="P4A-Bs-I4t"/>
                                 </connections>
                             </containerView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I6o-RN-SfU">
-                                <rect key="frame" x="504" y="550" width="76" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="9dx-PC-fxB"/>
-                                    <constraint firstAttribute="width" constant="76" id="w2F-wp-EOl"/>
-                                </constraints>
-                                <state key="normal" title="Zoomin"/>
-                                <connections>
-                                    <action selector="zoom2x:" destination="BYZ-38-t0r" eventType="touchUpInside" id="BHr-Tf-pgF"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="efr-Xr-ZDg">
-                                <rect key="frame" x="20" y="550" width="88" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="DfA-2y-PIQ"/>
-                                    <constraint firstAttribute="width" constant="88" id="wv8-8L-A7o"/>
-                                </constraints>
-                                <state key="normal" title="Zoom out"/>
-                                <connections>
-                                    <action selector="zoomOut:" destination="BYZ-38-t0r" eventType="touchUpInside" id="wN9-ls-I68"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="PtI-ro-FDo" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="0NK-jA-ecF"/>
                             <constraint firstAttribute="trailing" secondItem="PtI-ro-FDo" secondAttribute="trailing" id="HTM-1E-7ro"/>
-                            <constraint firstAttribute="trailing" secondItem="I6o-RN-SfU" secondAttribute="trailing" constant="20" id="Hll-6Z-ggB"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="I6o-RN-SfU" secondAttribute="bottom" constant="20" id="cxt-w9-1c4"/>
-                            <constraint firstAttribute="leadingMargin" secondItem="efr-Xr-ZDg" secondAttribute="leading" id="dz6-OT-JR9"/>
                             <constraint firstItem="PtI-ro-FDo" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="jIz-vh-8dW"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="efr-Xr-ZDg" secondAttribute="bottom" constant="20" id="oxF-PM-HmK"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="PtI-ro-FDo" secondAttribute="bottom" id="sIE-i6-2Jh"/>
                         </constraints>
                     </view>
@@ -67,7 +40,7 @@
         <!--Page View Controller-->
         <scene sceneID="pD9-No-Arc">
             <objects>
-                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="pageCurl" navigationOrientation="horizontal" spineLocation="min" id="NWc-87-WPH" sceneMemberID="viewController"/>
+                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="NWc-87-WPH" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XV8-nt-9I1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1315" y="666"/>
@@ -84,21 +57,23 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0l8-cx-aBU" customClass="PDFPageView" customModule="SwiftyPDF" customModuleProvider="target">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HI4-gq-Yep">
                                 <rect key="frame" x="0.0" y="20" width="600" height="580"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </view>
+                                <connections>
+                                    <outlet property="delegate" destination="a0w-OZ-8JS" id="YgN-Xz-RxE"/>
+                                </connections>
+                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="0l8-cx-aBU" secondAttribute="trailing" id="QYS-pE-SmU"/>
-                            <constraint firstItem="0l8-cx-aBU" firstAttribute="top" secondItem="cVY-n5-DQQ" secondAttribute="bottom" id="SC7-PZ-FED"/>
-                            <constraint firstItem="k67-iW-CK3" firstAttribute="top" secondItem="0l8-cx-aBU" secondAttribute="bottom" id="iRh-uj-ZQA"/>
-                            <constraint firstItem="0l8-cx-aBU" firstAttribute="leading" secondItem="2jk-3B-UOs" secondAttribute="leading" id="qwt-8v-Ci2"/>
+                            <constraint firstAttribute="trailing" secondItem="HI4-gq-Yep" secondAttribute="trailing" id="J1M-EN-Plh"/>
+                            <constraint firstItem="HI4-gq-Yep" firstAttribute="top" secondItem="cVY-n5-DQQ" secondAttribute="bottom" id="hmN-Z2-F9r"/>
+                            <constraint firstItem="k67-iW-CK3" firstAttribute="top" secondItem="HI4-gq-Yep" secondAttribute="bottom" id="kv1-n9-VtA"/>
+                            <constraint firstItem="HI4-gq-Yep" firstAttribute="leading" secondItem="2jk-3B-UOs" secondAttribute="leading" id="mah-M5-lwf"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="pdfPageView" destination="0l8-cx-aBU" id="4jf-88-7YX"/>
+                        <outlet property="scrollView" destination="HI4-gq-Yep" id="Ram-uU-uJV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EHF-u5-krd" userLabel="First Responder" sceneMemberID="firstResponder"/>
