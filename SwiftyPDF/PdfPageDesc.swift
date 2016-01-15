@@ -17,5 +17,9 @@ class PdfPageDesc: NSObject
     init(pdfPage: CGPDFPage)
     {
         self.pdfPage = pdfPage
+        
+        ImageCreator.createPlaceHolder(pdfPage) { (success: Bool, image: UIImage) in
+            let a=0
+        }
     }
 }
