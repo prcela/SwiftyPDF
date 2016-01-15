@@ -47,10 +47,12 @@ class PDFPageView: UIView
             h = h >> 1;
         }
         // set the levels of detail
-        tiledLayer.levelsOfDetail = levels;
+        tiledLayer.levelsOfDetail = levels
         // set the bias for how many 'zoom in' levels there are
-        tiledLayer.levelsOfDetailBias = 5;
+        tiledLayer.levelsOfDetailBias = 4;
+//        tiledLayer.tileSize = CGSize(width: 512, height: 512)
         // setup the size and position of the tiled layer
+        zoom = frame.size.width/pageRect.width
         tiledLayer.bounds = CGRectMake(0.0, 0.0,
             CGRectGetWidth(pageRect),
             CGRectGetHeight(pageRect));
@@ -58,6 +60,7 @@ class PDFPageView: UIView
         let y = CGRectGetHeight(tiledLayer.bounds) * tiledLayer.anchorPoint.y;
         tiledLayer.position = CGPointMake(x * zoom, y * zoom);
         tiledLayer.transform = CATransform3DMakeScale(zoom, zoom, 1.0);
+        
         layer.addSublayer(tiledLayer)
         
         tiledLayer.setNeedsDisplay()

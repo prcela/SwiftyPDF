@@ -19,7 +19,7 @@ class SinglePageViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         pdfPageView.tiledLayer.delegate = tiledDelegate
-        
+        pdfPageView.layoutIfNeeded()
         pdfPageView.setup()
     }
 
