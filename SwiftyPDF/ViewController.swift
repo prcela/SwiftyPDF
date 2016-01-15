@@ -11,7 +11,7 @@ import UIKit
 class ViewController: UIViewController {
     
     var pageController: UIPageViewController!
-    var viewControllers = [SinglePageViewController?]()
+    var pages = [PdfPageDesc]()
     var currentPageIdx: Int?
     private var pendingPageIdx: Int?
     var doc: CGPDFDocument?
@@ -35,9 +35,10 @@ class ViewController: UIViewController {
             doc = CGPDFDocumentCreateWithURL(docURL)
             
             let ctPages = CGPDFDocumentGetNumberOfPages(doc)
-            for _ in 1...ctPages
+            for idx in 1...ctPages
             {
-                viewControllers.append(nil)
+                let pageDesc = PdfPageDesc(pdfPage: CGPDFDocumentGetPage(doc, idx)!)
+                pages.append(pageDesc)
             }
         }
         return doc
@@ -45,9 +46,9 @@ class ViewController: UIViewController {
     
     private func pageIndexOfViewController(viewController: UIViewController) -> Int?
     {
-        for (idx,vc) in viewControllers.enumerate()
+        for (idx,pageDesc) in pages.enumerate()
         {
-            if vc == viewController
+            if viewController == pageDesc.viewController
             {
                 return idx
             }
@@ -67,18 +68,18 @@ class ViewController: UIViewController {
             pageController.delegate = self
             
             document()
-            if viewControllers[0] == nil
+            let page = pages.first!
+            if page.viewController == nil
             {
                 let vc = storyboard!.instantiateViewControllerWithIdentifier("pdfPage") as! SinglePageViewController
-                viewControllers[0] = vc
+                page.viewController = vc
                 
-                let page = CGPDFDocumentGetPage(document(), 1)!
-                vc.tiledDelegate = TiledDelegate(page: page)
+                vc.tiledDelegate = TiledDelegate(page: page.pdfPage)
                 
                 currentPageIdx = 0
             }
             
-            pageController.setViewControllers([viewControllers[0]!], direction: .Forward, animated: false, completion: nil)
+            pageController.setViewControllers([page.viewController!], direction: .Forward, animated: false, completion: nil)
         }
     }    
 }
@@ -87,20 +88,17 @@ extension ViewController: UIPageViewControllerDataSource
 {
     func pageViewController(pageViewController: UIPageViewController, viewControllerAfterViewController viewController: UIViewController) -> UIViewController?
     {
-        if let idx = pageIndexOfViewController(viewController) where idx < viewControllers.count-1
+        if let idx = pageIndexOfViewController(viewController) where idx < pages.count-1
         {
-            var nextVC = viewControllers[idx+1]
+            let nextPage = pages[idx+1]
             
-            if nextVC == nil
+            if nextPage.viewController == nil
             {
-                nextVC = storyboard!.instantiateViewControllerWithIdentifier("pdfPage") as? SinglePageViewController
-                viewControllers[idx+1] = nextVC
-                
-                let page = CGPDFDocumentGetPage(document(), idx+2)!
-                nextVC!.tiledDelegate = TiledDelegate(page: page)
+                nextPage.viewController = storyboard!.instantiateViewControllerWithIdentifier("pdfPage") as? SinglePageViewController
+                nextPage.viewController!.tiledDelegate = TiledDelegate(page: nextPage.pdfPage)
 
             }
-            return nextVC
+            return nextPage.viewController
         }
         return nil
     }
@@ -109,18 +107,14 @@ extension ViewController: UIPageViewControllerDataSource
     {
         if let idx = pageIndexOfViewController(viewController) where idx > 0
         {
-            var prevVC = viewControllers[idx-1]
-            if prevVC == nil
+            let prevPage = pages[idx-1]
+            if prevPage.viewController == nil
             {
-                prevVC = storyboard!.instantiateViewControllerWithIdentifier("pdfPage") as? SinglePageViewController
-                viewControllers[idx-1] = prevVC
-                
-                let page = CGPDFDocumentGetPage(document(), idx)!
-                prevVC!.tiledDelegate = TiledDelegate(page: page)
-
+                prevPage.viewController = storyboard!.instantiateViewControllerWithIdentifier("pdfPage") as? SinglePageViewController
+                prevPage.viewController!.tiledDelegate = TiledDelegate(page: prevPage.pdfPage)
             }
             
-            return prevVC
+            return prevPage.viewController
         }
         return nil
     }
