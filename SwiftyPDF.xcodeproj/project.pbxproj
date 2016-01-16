@@ -14,6 +14,7 @@
 		977AABFA1C494BCC00CC5572 /* PdfPageDesc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 977AABF91C494BCC00CC5572 /* PdfPageDesc.swift */; };
 		977AABFC1C49AEDD00CC5572 /* ImageCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 977AABFB1C49AEDD00CC5572 /* ImageCreator.swift */; };
 		977AABFE1C49B09500CC5572 /* PdfPageToImageOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 977AABFD1C49B09500CC5572 /* PdfPageToImageOperation.swift */; };
+		977AAC001C49B63100CC5572 /* ImageScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 977AABFF1C49B63100CC5572 /* ImageScrollView.swift */; };
 		97866CA71C45498D00AAE416 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97866CA61C45498D00AAE416 /* AppDelegate.swift */; };
 		97866CA91C45498D00AAE416 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97866CA81C45498D00AAE416 /* ViewController.swift */; };
 		97866CAC1C45498D00AAE416 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97866CAA1C45498D00AAE416 /* Main.storyboard */; };
@@ -48,6 +49,7 @@
 		977AABF91C494BCC00CC5572 /* PdfPageDesc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PdfPageDesc.swift; sourceTree = "<group>"; };
 		977AABFB1C49AEDD00CC5572 /* ImageCreator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCreator.swift; sourceTree = "<group>"; };
 		977AABFD1C49B09500CC5572 /* PdfPageToImageOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PdfPageToImageOperation.swift; sourceTree = "<group>"; };
+		977AABFF1C49B63100CC5572 /* ImageScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageScrollView.swift; sourceTree = "<group>"; };
 		97866CA31C45498D00AAE416 /* SwiftyPDF.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftyPDF.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		97866CA61C45498D00AAE416 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		97866CA81C45498D00AAE416 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -133,6 +135,7 @@
 				977AABF91C494BCC00CC5572 /* PdfPageDesc.swift */,
 				977AABFB1C49AEDD00CC5572 /* ImageCreator.swift */,
 				977AABFD1C49B09500CC5572 /* PdfPageToImageOperation.swift */,
+				977AABFF1C49B63100CC5572 /* ImageScrollView.swift */,
 			);
 			path = SwiftyPDF;
 			sourceTree = "<group>";
@@ -290,6 +293,7 @@
 				97866CA91C45498D00AAE416 /* ViewController.swift in Sources */,
 				977AABF11C47B77100CC5572 /* SinglePageViewController.swift in Sources */,
 				977AABF61C47CDDA00CC5572 /* PDFPageView.swift in Sources */,
+				977AAC001C49B63100CC5572 /* ImageScrollView.swift in Sources */,
 				977AABFC1C49AEDD00CC5572 /* ImageCreator.swift in Sources */,
 				977AABF81C47D27800CC5572 /* TiledDelegate.swift in Sources */,
 				97866CA71C45498D00AAE416 /* AppDelegate.swift in Sources */,

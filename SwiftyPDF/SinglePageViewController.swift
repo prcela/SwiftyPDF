@@ -9,41 +9,31 @@
 import UIKit
 
 class SinglePageViewController: UIViewController {
-
-    var tiledDelegate: TiledDelegate!
     
-    var pdfPageView: PDFPageView?
+    @IBOutlet weak var imageScrollView: ImageScrollView?
     
-    @IBOutlet weak var scrollView: UIScrollView!
+    weak var placeholder: UIImage? {
+        didSet {
+            refreshTiledImage()
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        scrollView.layoutIfNeeded()
-
-        // Do any additional setup after loading the view.
-        pdfPageView = PDFPageView()
-        let pageRect = CGPDFPageGetBoxRect(tiledDelegate.page, .CropBox)
-        pdfPageView?.frame = pageRect
-        scrollView.addSubview(pdfPageView!)
+        imageScrollView?.layoutIfNeeded()
         
-        print("pdfPageBoxRect \(pageRect)")
-        
-        pdfPageView?.tiledLayer.delegate = tiledDelegate
-        pdfPageView?.layoutIfNeeded()
-        pdfPageView?.setup()
-        
-        scrollView.contentSize = pdfPageView!.frame.size
-        
-        // Set up the minimum & maximum zoom scales
-        let scrollViewFrame = scrollView.frame
-        let scaleWidth = scrollViewFrame.size.width / scrollView.contentSize.width
-        let scaleHeight = scrollViewFrame.size.height / scrollView.contentSize.height
-        let minScale = min(scaleWidth, scaleHeight)
-        
-        scrollView.minimumZoomScale = minScale
-        scrollView.maximumZoomScale = 2.0
-        scrollView.zoomScale = minScale
+        refreshTiledImage()
+    }
+    
+    private func refreshTiledImage()
+    {
+        if let p = placeholder
+        {
+            let contentSizeMagnifier:CGFloat = 3
+            let imageContentSize = CGSize(width: contentSizeMagnifier*p.size.width, height: contentSizeMagnifier*p.size.height)
+            imageScrollView?.displayTiledImage(p, imageContentSize: imageContentSize)
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -51,22 +41,11 @@ class SinglePageViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
 
 extension SinglePageViewController: UIScrollViewDelegate
 {
     func viewForZoomingInScrollView(scrollView: UIScrollView) -> UIView? {
-        return pdfPageView
+        return imageScrollView!.zoomImageView
     }
 }

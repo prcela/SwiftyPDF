@@ -39,6 +39,7 @@ class ViewController: UIViewController {
             {
                 let pageDesc = PdfPageDesc(pdfPage: CGPDFDocumentGetPage(doc, idx)!)
                 pages.append(pageDesc)
+                pageDesc.createPlaceHolder()
             }
         }
         return doc
@@ -72,9 +73,8 @@ class ViewController: UIViewController {
             if page.viewController == nil
             {
                 let vc = storyboard!.instantiateViewControllerWithIdentifier("pdfPage") as! SinglePageViewController
+                vc.placeholder = page.placeholder
                 page.viewController = vc
-                
-                vc.tiledDelegate = TiledDelegate(page: page.pdfPage)
                 
                 currentPageIdx = 0
             }
@@ -95,8 +95,7 @@ extension ViewController: UIPageViewControllerDataSource
             if nextPage.viewController == nil
             {
                 nextPage.viewController = storyboard!.instantiateViewControllerWithIdentifier("pdfPage") as? SinglePageViewController
-                nextPage.viewController!.tiledDelegate = TiledDelegate(page: nextPage.pdfPage)
-
+                nextPage.viewController?.placeholder = nextPage.placeholder
             }
             return nextPage.viewController
         }
@@ -111,7 +110,7 @@ extension ViewController: UIPageViewControllerDataSource
             if prevPage.viewController == nil
             {
                 prevPage.viewController = storyboard!.instantiateViewControllerWithIdentifier("pdfPage") as? SinglePageViewController
-                prevPage.viewController!.tiledDelegate = TiledDelegate(page: prevPage.pdfPage)
+                prevPage.viewController?.placeholder = prevPage.placeholder
             }
             
             return prevPage.viewController

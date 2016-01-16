@@ -17,9 +17,14 @@ class PdfPageDesc: NSObject
     init(pdfPage: CGPDFPage)
     {
         self.pdfPage = pdfPage
-        
+    }
+    
+    func createPlaceHolder()
+    {
         ImageCreator.createPlaceHolder(pdfPage) { (success: Bool, image: UIImage) in
-            let a=0
+            // for zooming purpose take the content size 3x bigger
+            self.placeholder = image
+            self.viewController?.placeholder = image
         }
     }
 }

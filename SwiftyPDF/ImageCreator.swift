@@ -16,6 +16,7 @@ class ImageCreator: NSObject
     class func createPlaceHolder(pdfPage: CGPDFPage, completion: ((success: Bool, image: UIImage)->Void)?)
     {
         let pageRect:CGRect = CGPDFPageGetBoxRect(pdfPage, CGPDFBox.CropBox)
+        print("page rect: \(pageRect)")
         let op = PdfPageToImageOperation(imageSize: pageRect.size, pdfPage: pdfPage)
         op.completion = completion
         placeholdersQueue.addOperation(op)
