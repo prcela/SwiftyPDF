@@ -12,6 +12,7 @@ class SaveTilesOperation: NSOperation
 {
     var image: UIImage
     var pageIdx: Int
+    var completion: ((success: Bool)->Void)? = nil
     
     init(image: UIImage, pageIdx: Int) {
         self.image = image
@@ -86,6 +87,10 @@ class SaveTilesOperation: NSOperation
                 print(path)
                 imageData?.writeToFile(path, atomically: false)
             }
+        }
+        
+        dispatch_async(dispatch_get_main_queue()) {
+            self.completion?(success: true)
         }
     }
 

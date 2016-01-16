@@ -73,8 +73,8 @@ class ViewController: UIViewController {
             if page.viewController == nil
             {
                 page.viewController = storyboard!.instantiateViewControllerWithIdentifier("pdfPage") as? SinglePageViewController
-                page.viewController!.placeholder = page.placeholder
-                page.createBigTiles()
+                page.viewController!.pageDesc = page
+                
                 
                 currentPageIdx = 0
             }
@@ -95,7 +95,7 @@ extension ViewController: UIPageViewControllerDataSource
             if nextPage.viewController == nil
             {
                 nextPage.viewController = storyboard!.instantiateViewControllerWithIdentifier("pdfPage") as? SinglePageViewController
-                nextPage.viewController?.placeholder = nextPage.placeholder
+                nextPage.viewController?.pageDesc = nextPage
             }
             return nextPage.viewController
         }
@@ -110,7 +110,7 @@ extension ViewController: UIPageViewControllerDataSource
             if prevPage.viewController == nil
             {
                 prevPage.viewController = storyboard!.instantiateViewControllerWithIdentifier("pdfPage") as? SinglePageViewController
-                prevPage.viewController?.placeholder = prevPage.placeholder
+                prevPage.viewController?.pageDesc = prevPage
             }
             
             return prevPage.viewController

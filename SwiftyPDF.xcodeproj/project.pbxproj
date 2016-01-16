@@ -16,6 +16,7 @@
 		977AABFE1C49B09500CC5572 /* PdfPageToImageOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 977AABFD1C49B09500CC5572 /* PdfPageToImageOperation.swift */; };
 		977AAC001C49B63100CC5572 /* ImageScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 977AABFF1C49B63100CC5572 /* ImageScrollView.swift */; };
 		977AAC021C49D24300CC5572 /* SaveTilesOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 977AAC011C49D24300CC5572 /* SaveTilesOperation.swift */; };
+		977AAC041C4A751700CC5572 /* TilingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 977AAC031C4A751700CC5572 /* TilingView.swift */; };
 		97866CA71C45498D00AAE416 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97866CA61C45498D00AAE416 /* AppDelegate.swift */; };
 		97866CA91C45498D00AAE416 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97866CA81C45498D00AAE416 /* ViewController.swift */; };
 		97866CAC1C45498D00AAE416 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97866CAA1C45498D00AAE416 /* Main.storyboard */; };
@@ -52,6 +53,7 @@
 		977AABFD1C49B09500CC5572 /* PdfPageToImageOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PdfPageToImageOperation.swift; sourceTree = "<group>"; };
 		977AABFF1C49B63100CC5572 /* ImageScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageScrollView.swift; sourceTree = "<group>"; };
 		977AAC011C49D24300CC5572 /* SaveTilesOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaveTilesOperation.swift; sourceTree = "<group>"; };
+		977AAC031C4A751700CC5572 /* TilingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TilingView.swift; sourceTree = "<group>"; };
 		97866CA31C45498D00AAE416 /* SwiftyPDF.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftyPDF.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		97866CA61C45498D00AAE416 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		97866CA81C45498D00AAE416 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -101,6 +103,25 @@
 			path = ..;
 			sourceTree = "<group>";
 		};
+		977AAC051C4A752900CC5572 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				977AABF51C47CDDA00CC5572 /* PDFPageView.swift */,
+				977AABFF1C49B63100CC5572 /* ImageScrollView.swift */,
+				977AAC031C4A751700CC5572 /* TilingView.swift */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		977AAC061C4A754200CC5572 /* Operations */ = {
+			isa = PBXGroup;
+			children = (
+				977AABFD1C49B09500CC5572 /* PdfPageToImageOperation.swift */,
+				977AAC011C49D24300CC5572 /* SaveTilesOperation.swift */,
+			);
+			name = Operations;
+			sourceTree = "<group>";
+		};
 		97866C9A1C45498D00AAE416 = {
 			isa = PBXGroup;
 			children = (
@@ -131,14 +152,12 @@
 				97866CAF1C45498D00AAE416 /* LaunchScreen.storyboard */,
 				97866CB21C45498D00AAE416 /* Info.plist */,
 				977AABF01C47B77100CC5572 /* SinglePageViewController.swift */,
-				977AABF51C47CDDA00CC5572 /* PDFPageView.swift */,
 				977AABF71C47D27800CC5572 /* TiledDelegate.swift */,
 				977AABF91C494BCC00CC5572 /* PdfPageDesc.swift */,
 				977AABFB1C49AEDD00CC5572 /* ImageCreator.swift */,
-				977AABFD1C49B09500CC5572 /* PdfPageToImageOperation.swift */,
-				977AABFF1C49B63100CC5572 /* ImageScrollView.swift */,
+				977AAC051C4A752900CC5572 /* Views */,
+				977AAC061C4A754200CC5572 /* Operations */,
 				977AABF41C47C40A00CC5572 /* Resources */,
-				977AAC011C49D24300CC5572 /* SaveTilesOperation.swift */,
 			);
 			path = SwiftyPDF;
 			sourceTree = "<group>";
@@ -294,6 +313,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				97866CA91C45498D00AAE416 /* ViewController.swift in Sources */,
+				977AAC041C4A751700CC5572 /* TilingView.swift in Sources */,
 				977AABF11C47B77100CC5572 /* SinglePageViewController.swift in Sources */,
 				977AAC021C49D24300CC5572 /* SaveTilesOperation.swift in Sources */,
 				977AABF61C47CDDA00CC5572 /* PDFPageView.swift in Sources */,

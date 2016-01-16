@@ -8,15 +8,15 @@
 
 import UIKit
 
-let contentSizeMagnifier:CGFloat = 3
+let contentSizeMagnifier:CGFloat = 4
 
 class SinglePageViewController: UIViewController {
     
     @IBOutlet weak var imageScrollView: ImageScrollView?
     
-    weak var placeholder: UIImage? {
+    weak var pageDesc: PdfPageDesc? {
         didSet {
-            displayTiledImage()
+            pageDesc?.createBigTiles()
         }
     }
     
@@ -25,16 +25,21 @@ class SinglePageViewController: UIViewController {
         
         imageScrollView?.layoutIfNeeded()
         
-        displayTiledImage()
+        displayZoomImage()
     }
     
-    private func displayTiledImage()
+    func displayZoomImage()
     {
-        if let p = placeholder
+        if let placeholder = pageDesc?.placeholder
         {
-            let imageContentSize = CGSize(width: contentSizeMagnifier*p.size.width, height: contentSizeMagnifier*p.size.height)
-            imageScrollView?.displayTiledImage(p, imageContentSize: imageContentSize)
+            let imageContentSize = CGSize(width: contentSizeMagnifier*placeholder.size.width, height: contentSizeMagnifier*placeholder.size.height)
+            imageScrollView?.displayZoomImage(placeholder, imageContentSize: imageContentSize)
         }
+    }
+    
+    func displayTiledImages()
+    {
+        imageScrollView?.displayTiledImage(CGPDFPageGetPageNumber(pageDesc!.pdfPage))
     }
 
     override func didReceiveMemoryWarning() {

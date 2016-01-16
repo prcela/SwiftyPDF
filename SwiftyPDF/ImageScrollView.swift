@@ -11,6 +11,7 @@ import UIKit
 class ImageScrollView: UIScrollView
 {
     var zoomImageView: UIImageView?
+    var tilingView: TilingView?
 
     /*
     // Only override drawRect: if you perform custom drawing.
@@ -20,8 +21,10 @@ class ImageScrollView: UIScrollView
     }
     */
     
-    func displayTiledImage(image: UIImage, imageContentSize: CGSize)
+    func displayZoomImage(image: UIImage, imageContentSize: CGSize)
     {
+        guard zoomImageView == nil else {return}
+        
         // reset our zoomScale to 1.0 before doing any further calculations
         self.zoomScale = 1.0;
         
@@ -29,14 +32,17 @@ class ImageScrollView: UIScrollView
         zoomImageView = UIImageView(frame: CGRect(origin: CGPointZero, size: imageContentSize))
         zoomImageView!.image = image
         addSubview(zoomImageView!)
-        
-//        _tilingView = [[TilingView alloc] initWithImageName:imageName size:imageSize];
-//        _tilingView.frame = _zoomView.bounds;
-//        [_zoomView addSubview:_tilingView];
-//        
 
-        
         configureForImageSize(imageContentSize)
+    }
+    
+    func displayTiledImage(pageIdx: Int)
+    {
+        guard zoomImageView != nil else {return}
+        
+        tilingView = TilingView(frame: zoomImageView!.bounds)
+        tilingView!.pageIdx = pageIdx
+        zoomImageView?.addSubview(tilingView!)
     }
     
     func configureForImageSize(imageContentSize: CGSize)

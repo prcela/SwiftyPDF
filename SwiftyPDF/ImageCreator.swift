@@ -35,6 +35,7 @@ class ImageCreator: NSObject
         op.completion = {(success: Bool, image: UIImage) in
             let pageIdx = CGPDFPageGetPageNumber(pdfPage)
             let op = SaveTilesOperation(image: image, pageIdx: pageIdx)
+            op.completion = completion
             bigTilesQueue.addOperation(op)
         }
         bigTilesQueue.addOperation(op)

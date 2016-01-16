@@ -23,13 +23,14 @@ class PdfPageDesc: NSObject
     {
         ImageCreator.createPlaceHolder(pdfPage) { (success: Bool, image: UIImage) in
             self.placeholder = image
-            self.viewController?.placeholder = image
+            self.viewController?.displayZoomImage()
         }
     }
     
     func createBigTiles()
     {
         ImageCreator.createBigTiles(pdfPage) {  success in
+            self.viewController?.displayTiledImages()
         }
     }
 }
