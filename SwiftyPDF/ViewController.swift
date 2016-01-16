@@ -72,9 +72,9 @@ class ViewController: UIViewController {
             let page = pages.first!
             if page.viewController == nil
             {
-                let vc = storyboard!.instantiateViewControllerWithIdentifier("pdfPage") as! SinglePageViewController
-                vc.placeholder = page.placeholder
-                page.viewController = vc
+                page.viewController = storyboard!.instantiateViewControllerWithIdentifier("pdfPage") as? SinglePageViewController
+                page.viewController!.placeholder = page.placeholder
+                page.createBigTiles()
                 
                 currentPageIdx = 0
             }

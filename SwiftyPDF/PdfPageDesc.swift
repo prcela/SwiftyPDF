@@ -22,9 +22,14 @@ class PdfPageDesc: NSObject
     func createPlaceHolder()
     {
         ImageCreator.createPlaceHolder(pdfPage) { (success: Bool, image: UIImage) in
-            // for zooming purpose take the content size 3x bigger
             self.placeholder = image
             self.viewController?.placeholder = image
+        }
+    }
+    
+    func createBigTiles()
+    {
+        ImageCreator.createBigTiles(pdfPage) {  success in
         }
     }
 }

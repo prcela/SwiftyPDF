@@ -8,13 +8,15 @@
 
 import UIKit
 
+let contentSizeMagnifier:CGFloat = 3
+
 class SinglePageViewController: UIViewController {
     
     @IBOutlet weak var imageScrollView: ImageScrollView?
     
     weak var placeholder: UIImage? {
         didSet {
-            refreshTiledImage()
+            displayTiledImage()
         }
     }
     
@@ -23,14 +25,13 @@ class SinglePageViewController: UIViewController {
         
         imageScrollView?.layoutIfNeeded()
         
-        refreshTiledImage()
+        displayTiledImage()
     }
     
-    private func refreshTiledImage()
+    private func displayTiledImage()
     {
         if let p = placeholder
         {
-            let contentSizeMagnifier:CGFloat = 3
             let imageContentSize = CGSize(width: contentSizeMagnifier*p.size.width, height: contentSizeMagnifier*p.size.height)
             imageScrollView?.displayTiledImage(p, imageContentSize: imageContentSize)
         }

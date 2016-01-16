@@ -12,6 +12,7 @@ class ImageCreator: NSObject
 {
     static var placeholdersQueue = NSOperationQueue()
     static var thumbnailsQueue = NSOperationQueue()
+    static var bigTilesQueue = NSOperationQueue()
     
     class func createPlaceHolder(pdfPage: CGPDFPage, completion: ((success: Bool, image: UIImage)->Void)?)
     {
@@ -24,6 +25,20 @@ class ImageCreator: NSObject
     
     class func createThumbnail()
     {
+    }
+    
+    class func createBigTiles(pdfPage: CGPDFPage, completion: ((success: Bool)->Void)?)
+    {
+        let pageRect = CGPDFPageGetBoxRect(pdfPage, CGPDFBox.CropBox)
+        let bigSize = CGSize(width: pageRect.size.width*contentSizeMagnifier, height: pageRect.size.height*contentSizeMagnifier)
+        let op = PdfPageToImageOperation(imageSize: bigSize, pdfPage: pdfPage)
+        op.completion = {(success: Bool, image: UIImage) in
+            let pageIdx = CGPDFPageGetPageNumber(pdfPage)
+            let op = SaveTilesOperation(image: image, pageIdx: pageIdx)
+            bigTilesQueue.addOperation(op)
+        }
+        bigTilesQueue.addOperation(op)
+        
     }
 
 }

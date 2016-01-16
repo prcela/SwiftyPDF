@@ -41,7 +41,7 @@ class ImageScrollView: UIScrollView
     
     func configureForImageSize(imageContentSize: CGSize)
     {
-        print("full image size: ")
+        print("image content size: \(imageContentSize)")
         contentSize = imageContentSize
         setMaxMinZoomScalesForCurrentBounds()
         zoomScale = minimumZoomScale

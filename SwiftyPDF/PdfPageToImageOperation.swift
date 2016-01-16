@@ -38,14 +38,17 @@ class PdfPageToImageOperation: NSOperation
         CGContextSetRGBFillColor(context, 1.0,1.0,1.0,1.0)
         CGContextFillRect(context,pageRect)
         
-        CGContextSaveGState(context)
+        
         
         // ***********
         // Next 3 lines makes the rotations so that the page look in the right direction
         // ***********
         CGContextTranslateCTM(context, 0.0, pageRect.size.height)
         CGContextScaleCTM(context, 1.0, -1.0)
-        CGContextConcatCTM(context, CGPDFPageGetDrawingTransform(pdfPage, CGPDFBox.CropBox, pageRect, 0, true))
+        CGContextSaveGState(context)
+        
+//        CGContextConcatCTM(context, CGPDFPageGetDrawingTransform(pdfPage, CGPDFBox.CropBox, pageRect, 0, true))
+        CGContextScaleCTM(context, pdfScale, pdfScale)
         
         CGContextDrawPDFPage(context, pdfPage)
         CGContextRestoreGState(context)
