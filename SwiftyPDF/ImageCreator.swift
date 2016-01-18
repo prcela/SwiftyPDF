@@ -67,7 +67,7 @@ class ImageCreator: NSObject
         }
         
         let pageRect = CGPDFPageGetBoxRect(pdfPage, CGPDFBox.CropBox)
-        let mag = Config.contentSizeMagnifier
+        let mag = Config.pdfSizeMagnifier
         let bigSize = CGSize(width: pageRect.size.width * mag, height: pageRect.size.height * mag)
         let op = PdfPageToImageOperation(imageSize: bigSize, pdfPage: pdfPage)
         op.completion = {(success: Bool, image: UIImage) in

@@ -44,7 +44,7 @@ class TilingView: UIView
 
                     if Config.showTileLines
                     {
-                        let bpath:UIBezierPath = UIBezierPath(rect: tileRect)
+                        let bpath = UIBezierPath(rect: tileRect)
                         UIColor.grayColor().set()
                         bpath.stroke()
                     }
