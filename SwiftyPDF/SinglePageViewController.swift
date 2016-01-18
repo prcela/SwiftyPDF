@@ -18,11 +18,6 @@ class SinglePageViewController: UIViewController {
         }
     }
     
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "onPageTilesSaved:", name: pageTilesSavedNotification, object: nil)
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,15 +37,6 @@ class SinglePageViewController: UIViewController {
         }
     }
     
-    func onPageTilesSaved(notification: NSNotification)
-    {
-        guard let pageDesc = pageDesc else {return}
-        let pageIdx = notification.object as! Int
-        if pageIdx == CGPDFPageGetPageNumber(pageDesc.pdfPage)
-        {
-            displayTiledImages()
-        }
-    }
     
     func displayTiledImages()
     {

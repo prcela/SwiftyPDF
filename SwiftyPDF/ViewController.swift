@@ -15,6 +15,18 @@ class ViewController: UIViewController {
     var currentPageIdx: Int?
     private var pendingPageIdx: Int?
     var doc: CGPDFDocument?
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "onPageTilesSaved:", name: pageTilesSavedNotification, object: nil)
+        
+    }
+    
+    deinit
+    {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -83,7 +95,20 @@ class ViewController: UIViewController {
             
             pageController.setViewControllers([page.viewController!], direction: .Forward, animated: false, completion: nil)
         }
-    }    
+    }
+    
+    func onPageTilesSaved(notification: NSNotification)
+    {
+        let pageIdx = notification.object as! Int
+        for pageDesc in pages
+        {
+            if pageIdx == CGPDFPageGetPageNumber(pageDesc.pdfPage)
+            {
+                pageDesc.viewController?.displayTiledImages()
+            }
+        }
+    }
+
 }
 
 extension ViewController: UIPageViewControllerDataSource
