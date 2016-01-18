@@ -27,10 +27,8 @@ class PdfPageDesc: NSObject
         }
     }
     
-    func createBigTiles()
+    func createTiles()
     {
-        ImageCreator.createBigTiles(pdfPage) {  success in
-            self.viewController?.displayTiledImages()
-        }
+        ImageCreator.createTiles(pdfPage)
     }
 }

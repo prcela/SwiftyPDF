@@ -15,7 +15,7 @@
 		977AABFC1C49AEDD00CC5572 /* ImageCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 977AABFB1C49AEDD00CC5572 /* ImageCreator.swift */; };
 		977AABFE1C49B09500CC5572 /* PdfPageToImageOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 977AABFD1C49B09500CC5572 /* PdfPageToImageOperation.swift */; };
 		977AAC001C49B63100CC5572 /* ImageScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 977AABFF1C49B63100CC5572 /* ImageScrollView.swift */; };
-		977AAC021C49D24300CC5572 /* SaveTilesOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 977AAC011C49D24300CC5572 /* SaveTilesOperation.swift */; };
+		977AAC021C49D24300CC5572 /* SaveTileOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 977AAC011C49D24300CC5572 /* SaveTileOperation.swift */; };
 		977AAC041C4A751700CC5572 /* TilingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 977AAC031C4A751700CC5572 /* TilingView.swift */; };
 		977AAC081C4CE62600CC5572 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 977AAC071C4CE62600CC5572 /* Config.swift */; };
 		97866CA71C45498D00AAE416 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97866CA61C45498D00AAE416 /* AppDelegate.swift */; };
@@ -53,7 +53,7 @@
 		977AABFB1C49AEDD00CC5572 /* ImageCreator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCreator.swift; sourceTree = "<group>"; };
 		977AABFD1C49B09500CC5572 /* PdfPageToImageOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PdfPageToImageOperation.swift; sourceTree = "<group>"; };
 		977AABFF1C49B63100CC5572 /* ImageScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageScrollView.swift; sourceTree = "<group>"; };
-		977AAC011C49D24300CC5572 /* SaveTilesOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaveTilesOperation.swift; sourceTree = "<group>"; };
+		977AAC011C49D24300CC5572 /* SaveTileOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaveTileOperation.swift; sourceTree = "<group>"; };
 		977AAC031C4A751700CC5572 /* TilingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TilingView.swift; sourceTree = "<group>"; };
 		977AAC071C4CE62600CC5572 /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		97866CA31C45498D00AAE416 /* SwiftyPDF.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftyPDF.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -119,7 +119,7 @@
 			isa = PBXGroup;
 			children = (
 				977AABFD1C49B09500CC5572 /* PdfPageToImageOperation.swift */,
-				977AAC011C49D24300CC5572 /* SaveTilesOperation.swift */,
+				977AAC011C49D24300CC5572 /* SaveTileOperation.swift */,
 			);
 			name = Operations;
 			sourceTree = "<group>";
@@ -318,7 +318,7 @@
 				97866CA91C45498D00AAE416 /* ViewController.swift in Sources */,
 				977AAC041C4A751700CC5572 /* TilingView.swift in Sources */,
 				977AABF11C47B77100CC5572 /* SinglePageViewController.swift in Sources */,
-				977AAC021C49D24300CC5572 /* SaveTilesOperation.swift in Sources */,
+				977AAC021C49D24300CC5572 /* SaveTileOperation.swift in Sources */,
 				977AABF61C47CDDA00CC5572 /* PDFPageView.swift in Sources */,
 				977AAC081C4CE62600CC5572 /* Config.swift in Sources */,
 				977AAC001C49B63100CC5572 /* ImageScrollView.swift in Sources */,

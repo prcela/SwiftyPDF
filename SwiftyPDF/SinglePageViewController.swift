@@ -14,8 +14,14 @@ class SinglePageViewController: UIViewController {
     
     weak var pageDesc: PdfPageDesc? {
         didSet {
-            pageDesc?.createBigTiles()
+            pageDesc?.createTiles()
         }
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "onPageTilesSaved:", name: pageTilesSavedNotification, object: nil)
     }
     
     override func viewDidLoad() {
@@ -33,6 +39,16 @@ class SinglePageViewController: UIViewController {
             let mag = Config.pdfSizeMagnifier
             let imageContentSize = CGSize(width: mag*placeholder.size.width, height: mag*placeholder.size.height)
             imageScrollView?.displayZoomImage(placeholder, imageContentSize: imageContentSize)
+        }
+    }
+    
+    func onPageTilesSaved(notification: NSNotification)
+    {
+        guard let pageDesc = pageDesc else {return}
+        let pageIdx = notification.object as! Int
+        if pageIdx == CGPDFPageGetPageNumber(pageDesc.pdfPage)
+        {
+            displayTiledImages()
         }
     }
     

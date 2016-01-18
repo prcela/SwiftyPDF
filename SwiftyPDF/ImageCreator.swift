@@ -11,8 +11,9 @@ import UIKit
 class ImageCreator: NSObject
 {
     static var placeholdersQueue = NSOperationQueue()
+    static var bigQueue = NSOperationQueue()
     static var thumbnailsQueue = NSOperationQueue()
-    static var bigTilesQueue = NSOperationQueue()
+    static var tilesQueue = NSOperationQueue()
     
     class func cachedPagesPath() -> String
     {
@@ -59,11 +60,12 @@ class ImageCreator: NSObject
     {
     }
     
-    class func createBigTiles(pdfPage: CGPDFPage, completion: ((success: Bool)->Void)?)
+    class func createTiles(pdfPage: CGPDFPage)
     {
-        for oldOp in bigTilesQueue.operations
+        // old op should have the lower priority than tiles from this page
+        for oldTileOp in tilesQueue.operations
         {
-            oldOp.queuePriority = .VeryLow
+            oldTileOp.queuePriority = .Low
         }
         
         let pageRect = CGPDFPageGetBoxRect(pdfPage, CGPDFBox.CropBox)
@@ -71,13 +73,73 @@ class ImageCreator: NSObject
         let bigSize = CGSize(width: pageRect.size.width * mag, height: pageRect.size.height * mag)
         let op = PdfPageToImageOperation(imageSize: bigSize, pdfPage: pdfPage)
         op.completion = {(success: Bool, image: UIImage) in
+            
             let pageIdx = CGPDFPageGetPageNumber(pdfPage)
-            let op = SaveTilesOperation(image: image, pageIdx: pageIdx)
-            op.completion = completion
-            bigTilesQueue.addOperation(op)
+            let cachedPagesPath = ImageCreator.cachedPagesPath()
+            
+            let pageDirPath = "\(cachedPagesPath)/\(pageIdx)"
+            
+            if !NSFileManager.defaultManager().fileExistsAtPath(pageDirPath)
+            {
+                do {
+                    try NSFileManager.defaultManager().createDirectoryAtPath(pageDirPath, withIntermediateDirectories: false, attributes: nil)
+                } catch let error as NSError {
+                    print(error.localizedDescription)
+                }
+            }
+            
+            //        let imageData = UIImagePNGRepresentation(UIImage(CGImage: image.CGImage!))
+            //        let path = "\(cacheDirPath)/\(pageIdx)/big.png"
+            //
+            //        print(path)
+            //        imageData?.writeToFile(path, atomically: false)
+            
+            let size = Config.tileSize
+            
+            let cols = image.size.width / size.width
+            let rows = image.size.height / size.height
+            
+            var fullColumns = floor(cols)
+            var fullRows = floor(rows)
+            
+            let remainderWidth = image.size.width - (fullColumns * size.width)
+            let remainderHeight = image.size.height - (fullRows * size.height)
+            
+            
+            if (cols > fullColumns) {
+                fullColumns++
+            }
+            if (rows > fullRows) {
+                fullRows++
+            }
+            
+            for (var y = 0; y < Int(fullRows); ++y)
+            {
+                for (var x = 0; x < Int(fullColumns); ++x)
+                {
+                    var tileSize = size
+                    if (x + 1 == Int(fullColumns) && remainderWidth > 0) {
+                        // Last column
+                        tileSize.width = remainderWidth;
+                    }
+                    if (y + 1 == Int(fullRows) && remainderHeight > 0) {
+                        // Last row
+                        tileSize.height = remainderHeight;
+                    }
+                    
+                    let rect = CGRect(x: CGFloat(x)*size.width, y: CGFloat(y)*size.height,
+                        width: tileSize.width, height: tileSize.height)
+                    
+                    let path = "\(pageDirPath)/\(x)_\(y).png"
+                    
+                    let op = SaveTileOperation(image: image, path: path, rect: rect, pageIdx: pageIdx)
+                    op.tilesQueue = tilesQueue
+                    tilesQueue.addOperation(op)
+                }
+            }
+
         }
-        bigTilesQueue.addOperation(op)
-        
+        bigQueue.addOperation(op)
     }
 
 }
