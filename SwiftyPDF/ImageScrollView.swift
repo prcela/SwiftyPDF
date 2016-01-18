@@ -68,7 +68,8 @@ class ImageScrollView: UIScrollView
         
         // on high resolution screens we have double the pixel density, so we will be seeing every pixel if we limit the
         // maximum zoom scale to 0.5.
-        let maxScale = 1.0 / UIScreen.mainScreen().scale
+        // Added extra zoom that will enable zooming even more the content size is.
+        let maxScale = Config.extraZoom + 1.0 / UIScreen.mainScreen().scale
         
         // don't let minScale exceed maxScale. (If the image is smaller than the screen, we don't want to force it to be zoomed.)
         if (minScale > maxScale) {

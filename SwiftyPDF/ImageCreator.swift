@@ -14,6 +14,38 @@ class ImageCreator: NSObject
     static var thumbnailsQueue = NSOperationQueue()
     static var bigTilesQueue = NSOperationQueue()
     
+    class func cachedPagesPath() -> String
+    {
+        let paths = NSSearchPathForDirectoriesInDomains(.CachesDirectory, .UserDomainMask, true)
+        let pagesPath = "\(paths.first!)/pages"
+        
+        if !NSFileManager.defaultManager().fileExistsAtPath(pagesPath)
+        {
+            do {
+                try NSFileManager.defaultManager().createDirectoryAtPath(pagesPath, withIntermediateDirectories: false, attributes: nil)
+            } catch let error as NSError {
+                print(error.localizedDescription)
+            }
+        }
+        
+        return pagesPath
+    }
+    
+    class func clearCachedFiles()
+    {
+        let fm = NSFileManager.defaultManager()
+        do {
+            let cachedPath = cachedPagesPath()
+            let paths = try fm.contentsOfDirectoryAtPath(cachedPath)
+            for path in paths
+            {
+                try fm.removeItemAtPath("\(cachedPath)/\(path)")
+            }
+        } catch let error as NSError {
+            print(error.localizedDescription)
+        }
+    }
+    
     class func createPlaceHolder(pdfPage: CGPDFPage, completion: ((success: Bool, image: UIImage)->Void)?)
     {
         let pageRect:CGRect = CGPDFPageGetBoxRect(pdfPage, CGPDFBox.CropBox)
@@ -30,7 +62,8 @@ class ImageCreator: NSObject
     class func createBigTiles(pdfPage: CGPDFPage, completion: ((success: Bool)->Void)?)
     {
         let pageRect = CGPDFPageGetBoxRect(pdfPage, CGPDFBox.CropBox)
-        let bigSize = CGSize(width: pageRect.size.width*contentSizeMagnifier, height: pageRect.size.height*contentSizeMagnifier)
+        let mag = Config.contentSizeMagnifier
+        let bigSize = CGSize(width: pageRect.size.width * mag, height: pageRect.size.height * mag)
         let op = PdfPageToImageOperation(imageSize: bigSize, pdfPage: pdfPage)
         op.completion = {(success: Bool, image: UIImage) in
             let pageIdx = CGPDFPageGetPageNumber(pdfPage)

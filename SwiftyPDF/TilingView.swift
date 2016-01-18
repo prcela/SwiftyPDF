@@ -53,10 +53,9 @@ class TilingView: UIView
 
     func tileAtCol(col: Int, row: Int) -> UIImage?
     {
-        let paths = NSSearchPathForDirectoriesInDomains(.CachesDirectory, .UserDomainMask, true)
-        let cacheDirPath = paths.first!
+        let cachedPagesPath = ImageCreator.cachedPagesPath()
         
-        let path = "\(cacheDirPath)/\(pageIdx)/\(col)_\(row).png"
+        let path = "\(cachedPagesPath)/\(pageIdx)/\(col)_\(row).png"
         return UIImage(contentsOfFile: path)
     }
 

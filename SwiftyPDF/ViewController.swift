@@ -69,6 +69,8 @@ class ViewController: UIViewController {
             pageController.delegate = self
             
             document()
+            ImageCreator.clearCachedFiles()
+            
             let page = pages.first!
             if page.viewController == nil
             {

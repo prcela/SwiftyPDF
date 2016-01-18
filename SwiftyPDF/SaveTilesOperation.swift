@@ -21,10 +21,9 @@ class SaveTilesOperation: NSOperation
     
     override func main() {
         
-        let paths = NSSearchPathForDirectoriesInDomains(.CachesDirectory, .UserDomainMask, true)
-        let cacheDirPath = paths.first!
+        let cachedPagesPath = ImageCreator.cachedPagesPath()
         
-        let pageDirPath = "\(cacheDirPath)/\(pageIdx)"
+        let pageDirPath = "\(cachedPagesPath)/\(pageIdx)"
         
         if !NSFileManager.defaultManager().fileExistsAtPath(pageDirPath)
         {
@@ -82,7 +81,7 @@ class SaveTilesOperation: NSOperation
                 
                 let imageData = UIImagePNGRepresentation(UIImage(CGImage: tileImage!))
                 
-                let path = "\(cacheDirPath)/\(pageIdx)/\(x)_\(y).png"
+                let path = "\(pageDirPath)/\(x)_\(y).png"
                 
                 print(path)
                 imageData?.writeToFile(path, atomically: false)

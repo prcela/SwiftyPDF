@@ -8,8 +8,6 @@
 
 import UIKit
 
-let contentSizeMagnifier:CGFloat = 4
-
 class SinglePageViewController: UIViewController {
     
     @IBOutlet weak var imageScrollView: ImageScrollView?
@@ -32,7 +30,8 @@ class SinglePageViewController: UIViewController {
     {
         if let placeholder = pageDesc?.placeholder
         {
-            let imageContentSize = CGSize(width: contentSizeMagnifier*placeholder.size.width, height: contentSizeMagnifier*placeholder.size.height)
+            let mag = Config.contentSizeMagnifier
+            let imageContentSize = CGSize(width: mag*placeholder.size.width, height: mag*placeholder.size.height)
             imageScrollView?.displayZoomImage(placeholder, imageContentSize: imageContentSize)
         }
     }
