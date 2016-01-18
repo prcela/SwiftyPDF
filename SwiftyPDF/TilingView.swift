@@ -24,7 +24,7 @@ class TilingView: UIView
     override func drawRect(rect: CGRect) {
         // Drawing code
         
-        let tileSize = CGSize(width: 256, height: 256)
+        let tileSize = Config.tileSize
         
         let firstCol = Int(floor(CGRectGetMinX(rect) / tileSize.width))
         let lastCol = Int(floor((CGRectGetMaxX(rect)-1) / tileSize.width))
@@ -41,10 +41,13 @@ class TilingView: UIView
                     tileRect = CGRectIntersection(bounds, tileRect)
                     
                     tile.drawInRect(tileRect)
-                    
-                    //        [[UIColor whiteColor] set];
-                    //        CGContextSetLineWidth(context, 6.0);
-                    //        CGContextStrokeRect(context, tileRect);
+
+                    if Config.showTileLines
+                    {
+                        let bpath:UIBezierPath = UIBezierPath(rect: tileRect)
+                        UIColor.grayColor().set()
+                        bpath.stroke()
+                    }
                 }
             }
         }

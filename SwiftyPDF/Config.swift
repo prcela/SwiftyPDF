@@ -10,6 +10,8 @@ import UIKit
 
 struct Config
 {
-    static let contentSizeMagnifier:CGFloat = 4
+    static let contentSizeMagnifier:CGFloat = 2
     static let extraZoom: CGFloat = 1
+    static let tileSize = CGSize(width: 256, height: 256)
+    static let showTileLines = true
 }

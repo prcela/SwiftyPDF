@@ -61,6 +61,11 @@ class ImageCreator: NSObject
     
     class func createBigTiles(pdfPage: CGPDFPage, completion: ((success: Bool)->Void)?)
     {
+        for oldOp in bigTilesQueue.operations
+        {
+            oldOp.queuePriority = .VeryLow
+        }
+        
         let pageRect = CGPDFPageGetBoxRect(pdfPage, CGPDFBox.CropBox)
         let mag = Config.contentSizeMagnifier
         let bigSize = CGSize(width: pageRect.size.width * mag, height: pageRect.size.height * mag)

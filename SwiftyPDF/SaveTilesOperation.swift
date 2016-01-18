@@ -40,7 +40,7 @@ class SaveTilesOperation: NSOperation
 //        print(path)
 //        imageData?.writeToFile(path, atomically: false)
         
-        let size = CGSize(width: 256, height: 256)
+        let size = Config.tileSize
         
         let cols = image.size.width / size.width
         let rows = image.size.height / size.height
