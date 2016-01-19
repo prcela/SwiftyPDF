@@ -31,8 +31,8 @@ class SinglePageViewController: UIViewController {
     {
         if let placeholder = pageDesc?.placeholder
         {
-            let mag = Config.pdfSizeMagnifier
-            let imageContentSize = CGSize(width: mag*placeholder.size.width, height: mag*placeholder.size.height)
+            let scale = Config.pdfSizeMagnifier * UIScreen.mainScreen().scale
+            let imageContentSize = CGSize(width: scale*placeholder.size.width, height: scale*placeholder.size.height)
             imageScrollView?.displayZoomImage(placeholder, imageContentSize: imageContentSize)
         }
     }

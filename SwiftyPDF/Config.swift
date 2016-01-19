@@ -10,8 +10,8 @@ import UIKit
 
 struct Config
 {
-    // defines the actual content size of scroll view. It is equal to real pdf size * pdf size magnifier
-    static let pdfSizeMagnifier:CGFloat = 2
+    // defines the actual content size of scroll view. contentSize = (real pdf size) x (pdf size magnifier) * (screen scale)
+    static let pdfSizeMagnifier:CGFloat = 1
     
     // extra zoom allows to go beyond content size
     static let extraZoom: CGFloat = 1
@@ -19,6 +19,6 @@ struct Config
     // size of tile 
     static let tileSize = CGSize(width: 256, height: 256)
     
-    // show tiles grid
+    // show tiles grid (for developing purpose to see when tile is actualy drawn)
     static let showTileLines = true
 }

@@ -44,7 +44,7 @@ class SaveTileOperation: NSOperation
             }
         }
         
-        // print("ctPageTilesInQueue:\(ctPageTilesInQueue) for pageIdx:\(pageIdx)")
+        print("ctPageTilesInQueue:\(ctPageTilesInQueue) for pageIdx:\(pageIdx)")
         
         // if this was the last one on the page
         if ctPageTilesInQueue <= 1
