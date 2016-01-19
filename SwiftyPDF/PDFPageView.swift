@@ -35,7 +35,7 @@ class PDFPageView: UIView
     func setup()
     {
         let tiledDelegate = tiledLayer.delegate as! TiledDelegate
-        let pageRect = CGPDFPageGetBoxRect(tiledDelegate.page, .CropBox)
+        let pageRect = CGPDFPageGetBoxRect(tiledDelegate.page, Config.pdfBox)
 
         var w = Int(pageRect.size.width)
         var h = Int(pageRect.size.height)

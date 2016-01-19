@@ -49,7 +49,7 @@ class ImageCreator: NSObject
     
     class func createPlaceHolder(pdfPage: CGPDFPage, completion: ((success: Bool, image: UIImage)->Void)?)
     {
-        let pageRect:CGRect = CGPDFPageGetBoxRect(pdfPage, CGPDFBox.CropBox)
+        let pageRect:CGRect = CGPDFPageGetBoxRect(pdfPage, Config.pdfBox)
         print("placeholder page rect: \(pageRect)")
         let op = PdfPageToImageOperation(imageSize: pageRect.size, pdfPage: pdfPage)
         op.completion = completion
@@ -73,7 +73,7 @@ class ImageCreator: NSObject
             oldTileOp.queuePriority = .Low
         }
         
-        let pageRect = CGPDFPageGetBoxRect(pdfPage, CGPDFBox.CropBox)
+        let pageRect = CGPDFPageGetBoxRect(pdfPage, Config.pdfBox)
         let scale = Config.pdfSizeMagnifier * UIScreen.mainScreen().scale
         let bigSize = CGSize(width: pageRect.size.width * scale, height: pageRect.size.height * scale)
         let op = PdfPageToImageOperation(imageSize: bigSize, pdfPage: pdfPage)

@@ -25,7 +25,7 @@ class PdfPageToImageOperation: NSOperation
     override func main() {
         let width:CGFloat = imageSize.width
         
-        var pageRect:CGRect = CGPDFPageGetBoxRect(pdfPage, CGPDFBox.CropBox)
+        var pageRect:CGRect = CGPDFPageGetBoxRect(pdfPage, Config.pdfBox)
         let pdfScale:CGFloat = width/pageRect.size.width
         pageRect.size = CGSizeMake(pageRect.size.width*pdfScale, pageRect.size.height*pdfScale)
         pageRect.origin = CGPointZero
@@ -49,6 +49,9 @@ class PdfPageToImageOperation: NSOperation
         
 //        CGContextConcatCTM(context, CGPDFPageGetDrawingTransform(pdfPage, CGPDFBox.CropBox, pageRect, 0, true))
         CGContextScaleCTM(context, pdfScale, pdfScale)
+        
+        CGContextSetInterpolationQuality(context, .High)
+        CGContextSetRenderingIntent(context, .RenderingIntentDefault)
         
         CGContextDrawPDFPage(context, pdfPage)
         CGContextRestoreGState(context)

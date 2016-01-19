@@ -17,8 +17,11 @@ struct Config
     static let extraZoom: CGFloat = 1
     
     // size of tile 
-    static let tileSize = CGSize(width: 256, height: 256)
+    static let tileSize = CGSize(width: 512, height: 512)
     
     // show tiles grid (for developing purpose to see when tile is actualy drawn)
     static let showTileLines = true
+    
+    // pdf box
+    static let pdfBox:CGPDFBox = .MediaBox
 }
