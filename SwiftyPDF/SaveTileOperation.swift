@@ -33,19 +33,18 @@ class SaveTileOperation: NSOperation
         
         let imageData = UIImagePNGRepresentation(UIImage(CGImage: tileImage!))
         
-        print(path)
         imageData?.writeToFile(path, atomically: false)
         
-        let ctPageTilesInQueue = tilesQueue!.operations.reduce(0) { (sum, op) -> Int in
+        var ctPageTilesInQueue = 0
+        for op in tilesQueue!.operations
+        {
             if (op as! SaveTileOperation).pageIdx == self.pageIdx
             {
-                return sum + 1
-            }
-            else
-            {
-                return sum
+                ctPageTilesInQueue++
             }
         }
+        
+        // print("ctPageTilesInQueue:\(ctPageTilesInQueue) for pageIdx:\(pageIdx)")
         
         // if this was the last one on the page
         if ctPageTilesInQueue <= 1

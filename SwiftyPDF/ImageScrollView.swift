@@ -26,7 +26,7 @@ class ImageScrollView: UIScrollView
         guard zoomImageView == nil else {return}
         
         // reset our zoomScale to 1.0 before doing any further calculations
-        self.zoomScale = 1.0;
+        self.zoomScale = 1.0
         
         // make views to display the new image
         zoomImageView = UIImageView(frame: CGRect(origin: CGPointZero, size: imageContentSize))
@@ -40,9 +40,16 @@ class ImageScrollView: UIScrollView
     {
         guard zoomImageView != nil else {return}
         
-        tilingView = TilingView(frame: zoomImageView!.bounds)
-        tilingView!.pageIdx = pageIdx
-        zoomImageView?.addSubview(tilingView!)
+        if tilingView == nil
+        {
+            tilingView = TilingView(frame: zoomImageView!.bounds)
+            tilingView!.pageIdx = pageIdx
+            zoomImageView?.addSubview(tilingView!)
+        }
+        else
+        {
+            tilingView!.setNeedsDisplay()
+        }
     }
     
     func configureForImageSize(imageContentSize: CGSize)

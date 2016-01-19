@@ -50,7 +50,7 @@ class ImageCreator: NSObject
     class func createPlaceHolder(pdfPage: CGPDFPage, completion: ((success: Bool, image: UIImage)->Void)?)
     {
         let pageRect:CGRect = CGPDFPageGetBoxRect(pdfPage, CGPDFBox.CropBox)
-        print("page rect: \(pageRect)")
+        print("placeholder page rect: \(pageRect)")
         let op = PdfPageToImageOperation(imageSize: pageRect.size, pdfPage: pdfPage)
         op.completion = completion
         placeholdersQueue.addOperation(op)
@@ -62,7 +62,12 @@ class ImageCreator: NSObject
     
     class func createTiles(pdfPage: CGPDFPage)
     {
-        // old op should have the lower priority than tiles from this page
+        print("Creating tiles for page \(CGPDFPageGetPageNumber(pdfPage))")
+
+        // Important! If tiles are generating concurently change the logic for knowing when the last page tile is saved
+        tilesQueue.maxConcurrentOperationCount = 1
+        
+        // old ops should have the lower priority than tiles from this page
         for oldTileOp in tilesQueue.operations
         {
             oldTileOp.queuePriority = .Low

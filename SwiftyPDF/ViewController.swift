@@ -100,6 +100,8 @@ class ViewController: UIViewController {
     func onPageTilesSaved(notification: NSNotification)
     {
         let pageIdx = notification.object as! Int
+        print("Tiles saved for page: \(pageIdx)")
+        
         for pageDesc in pages
         {
             if pageIdx == CGPDFPageGetPageNumber(pageDesc.pdfPage)
@@ -151,23 +153,14 @@ extension ViewController: UIPageViewControllerDelegate
     
     func pageViewController(pageViewController: UIPageViewController, willTransitionToViewControllers pendingViewControllers: [UIViewController])
     {
-        print("pending:")
         if let vc = pendingViewControllers.last
         {
             pendingPageIdx = pageIndexOfViewController(vc)
-            print(pendingPageIdx)
         }
     }
     
     func pageViewController(pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool)
     {
-        print("previous:")
-        for vc in previousViewControllers
-        {
-            let idx = pageIndexOfViewController(vc)
-            print(idx)
-        }
-        
         if completed
         {
             currentPageIdx = pendingPageIdx
