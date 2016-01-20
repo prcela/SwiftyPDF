@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		977388681C4FCE7700E62DF2 /* PdfDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 977388671C4FCE7700E62DF2 /* PdfDocument.swift */; };
 		977AABF11C47B77100CC5572 /* SinglePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 977AABF01C47B77100CC5572 /* SinglePageViewController.swift */; };
 		977AABF31C47C40000CC5572 /* sample.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 977AABF21C47C40000CC5572 /* sample.pdf */; };
 		977AABF61C47CDDA00CC5572 /* PDFPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 977AABF51C47CDDA00CC5572 /* PDFPageView.swift */; };
@@ -45,6 +46,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		977388671C4FCE7700E62DF2 /* PdfDocument.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PdfDocument.swift; sourceTree = "<group>"; };
 		977AABF01C47B77100CC5572 /* SinglePageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SinglePageViewController.swift; sourceTree = "<group>"; };
 		977AABF21C47C40000CC5572 /* sample.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = sample.pdf; sourceTree = "<group>"; };
 		977AABF51C47CDDA00CC5572 /* PDFPageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDFPageView.swift; sourceTree = "<group>"; };
@@ -96,6 +98,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		977388661C4FCD6B00E62DF2 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				977AABF91C494BCC00CC5572 /* PdfPageDesc.swift */,
+				977388671C4FCE7700E62DF2 /* PdfDocument.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
 		977AABF41C47C40A00CC5572 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -155,9 +166,9 @@
 				97866CB21C45498D00AAE416 /* Info.plist */,
 				977AABF01C47B77100CC5572 /* SinglePageViewController.swift */,
 				977AABF71C47D27800CC5572 /* TiledDelegate.swift */,
-				977AABF91C494BCC00CC5572 /* PdfPageDesc.swift */,
 				977AABFB1C49AEDD00CC5572 /* ImageCreator.swift */,
 				977AAC071C4CE62600CC5572 /* Config.swift */,
+				977388661C4FCD6B00E62DF2 /* Model */,
 				977AAC051C4A752900CC5572 /* Views */,
 				977AAC061C4A754200CC5572 /* Operations */,
 				977AABF41C47C40A00CC5572 /* Resources */,
@@ -324,6 +335,7 @@
 				977AAC001C49B63100CC5572 /* ImageScrollView.swift in Sources */,
 				977AABFC1C49AEDD00CC5572 /* ImageCreator.swift in Sources */,
 				977AABF81C47D27800CC5572 /* TiledDelegate.swift in Sources */,
+				977388681C4FCE7700E62DF2 /* PdfDocument.swift in Sources */,
 				97866CA71C45498D00AAE416 /* AppDelegate.swift in Sources */,
 				977AABFE1C49B09500CC5572 /* PdfPageToImageOperation.swift in Sources */,
 				977AABFA1C494BCC00CC5572 /* PdfPageDesc.swift in Sources */,

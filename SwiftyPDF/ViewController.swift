@@ -14,7 +14,7 @@ class ViewController: UIViewController {
     var pages = [PdfPageDesc]()
     var currentPageIdx: Int?
     private var pendingPageIdx: Int?
-    var doc: CGPDFDocument?
+    
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -38,24 +38,6 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func document() -> CGPDFDocument?
-    {
-        if(doc == nil)
-        {
-            let path = NSBundle.mainBundle().pathForResource("sample", ofType: "pdf")!
-            let docURL = NSURL(fileURLWithPath: path)
-            doc = CGPDFDocumentCreateWithURL(docURL)
-            
-            let ctPages = CGPDFDocumentGetNumberOfPages(doc)
-            for idx in 1...ctPages
-            {
-                let pageDesc = PdfPageDesc(pdfPage: CGPDFDocumentGetPage(doc, idx)!)
-                pages.append(pageDesc)
-                pageDesc.createPlaceHolder()
-            }
-        }
-        return doc
-    }
     
     private func pageIndexOfViewController(viewController: UIViewController) -> Int?
     {
@@ -80,7 +62,20 @@ class ViewController: UIViewController {
             pageController.dataSource = self
             pageController.delegate = self
             
-            document()
+            
+            let path = NSBundle.mainBundle().pathForResource("sample", ofType: "pdf")!
+            if let doc = PdfDocument.open(path: path)
+            {
+                let ctPages = CGPDFDocumentGetNumberOfPages(doc)
+                for idx in 1...ctPages
+                {
+                    let pageDesc = PdfPageDesc(pageIdx: idx)
+                    pages.append(pageDesc)
+                    pageDesc.createPlaceHolder()
+                }
+            }
+
+            
             ImageCreator.clearCachedFiles()
             
             let page = pages.first!
@@ -104,7 +99,7 @@ class ViewController: UIViewController {
         
         for pageDesc in pages
         {
-            if pageIdx == CGPDFPageGetPageNumber(pageDesc.pdfPage)
+            if pageIdx == pageDesc.idx
             {
                 pageDesc.viewController?.imageScrollView?.tilingView?.setNeedsDisplay()
             }

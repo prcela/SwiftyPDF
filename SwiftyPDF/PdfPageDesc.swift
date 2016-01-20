@@ -12,16 +12,16 @@ class PdfPageDesc: NSObject
 {
     var viewController: SinglePageViewController?
     var placeholder: UIImage?
-    var pdfPage: CGPDFPage
+    var idx: Int
 
-    init(pdfPage: CGPDFPage)
+    init(pageIdx: Int)
     {
-        self.pdfPage = pdfPage
+        self.idx = pageIdx
     }
     
     func createPlaceHolder()
     {
-        ImageCreator.createPlaceHolder(pdfPage) { (success: Bool, image: UIImage) in
+        ImageCreator.createPlaceHolder(idx) { (success: Bool, image: UIImage) in
             self.placeholder = image
             self.viewController?.displayZoomImage()
         }
@@ -29,6 +29,6 @@ class PdfPageDesc: NSObject
     
     func createTiles()
     {
-        ImageCreator.createTiles(pdfPage)
+        ImageCreator.createTiles(idx)
     }
 }

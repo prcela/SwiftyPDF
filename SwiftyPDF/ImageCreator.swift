@@ -47,8 +47,9 @@ class ImageCreator: NSObject
         }
     }
     
-    class func createPlaceHolder(pdfPage: CGPDFPage, completion: ((success: Bool, image: UIImage)->Void)?)
+    class func createPlaceHolder(pageIdx: Int, completion: ((success: Bool, image: UIImage)->Void)?)
     {
+        guard let pdfPage = PdfDocument.getPage(pageIdx) else {return}
         let pageRect:CGRect = CGPDFPageGetBoxRect(pdfPage, Config.pdfBox)
         print("placeholder page rect: \(pageRect)")
         let op = PdfPageToImageOperation(imageSize: pageRect.size, pdfPage: pdfPage)
@@ -60,9 +61,11 @@ class ImageCreator: NSObject
     {
     }
     
-    class func createTiles(pdfPage: CGPDFPage)
+    class func createTiles(pageIdx:Int)
     {
-        print("Creating tiles for page \(CGPDFPageGetPageNumber(pdfPage))")
+        guard let pdfPage = PdfDocument.getPage(pageIdx) else {return}
+        
+        print("Creating tiles for page \(pageIdx)")
 
         // Important! If tiles are generating concurently change the logic for knowing when the last page tile is saved
         tilesQueue.maxConcurrentOperationCount = 1

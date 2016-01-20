@@ -40,7 +40,7 @@ class SinglePageViewController: UIViewController {
     
     func displayTiledImages()
     {
-        imageScrollView?.displayTiledImages(CGPDFPageGetPageNumber(pageDesc!.pdfPage))
+        imageScrollView?.displayTiledImages(pageDesc!.idx)
     }
     
     func removeTilingView()
