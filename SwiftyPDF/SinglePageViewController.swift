@@ -42,6 +42,12 @@ class SinglePageViewController: UIViewController {
     {
         imageScrollView?.displayTiledImages(CGPDFPageGetPageNumber(pageDesc!.pdfPage))
     }
+    
+    func removeTilingView()
+    {
+        imageScrollView?.tilingView?.removeFromSuperview()
+        imageScrollView?.tilingView = nil
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -59,9 +65,13 @@ extension SinglePageViewController: UIScrollViewDelegate
     func scrollViewDidEndZooming(scrollView: UIScrollView, withView view: UIView?, atScale scale: CGFloat)
     {
         print("Did end zooming at scale \(scale)")
-        if scale > scrollView.minimumZoomScale
+        if scale > scrollView.minimumZoomScale + Config.minScaleToleranceForTiling
         {
             displayTiledImages()
+        }
+        else
+        {
+            removeTilingView()
         }
     }
 }

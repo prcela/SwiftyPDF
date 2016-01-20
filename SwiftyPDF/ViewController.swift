@@ -165,12 +165,15 @@ extension ViewController: UIPageViewControllerDelegate
         {
             for previousVC in previousViewControllers
             {
-                if let imageScrollView = (previousVC as? SinglePageViewController)?.imageScrollView
+                if let singlePageVC = previousVC as? SinglePageViewController
                 {
-                    // reset scale, remove tiling view
-                    imageScrollView.zoomScale = imageScrollView.minimumZoomScale
-                    imageScrollView.tilingView?.removeFromSuperview()
-                    imageScrollView.tilingView = nil
+                    singlePageVC.removeTilingView()
+                    
+                    if let imageScrollView = singlePageVC.imageScrollView
+                    {
+                        imageScrollView.zoomScale = imageScrollView.minimumZoomScale
+                    }
+
                 }
             }
             

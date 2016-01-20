@@ -22,6 +22,11 @@ class TilingView: UIView
         super.init(frame: frame)
         
         backgroundColor = UIColor.clearColor()
+        
+        if let tiledLayer = layer as? CATiledLayer
+        {
+            tiledLayer.tileSize = Config.tileSize
+        }
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -41,27 +46,28 @@ class TilingView: UIView
         let firstRow = Int(floor(CGRectGetMinY(rect) / tileSize.height))
         let lastRow = Int(floor((CGRectGetMaxY(rect)-1) / tileSize.height))
         
-        for (var row = firstRow; row <= lastRow; row++) {
-            for (var col = firstCol; col <= lastCol; col++) {
-                if let tile = tileAtCol(col, row:row)
+        for (var row = firstRow; row <= lastRow; row++)
+        {
+            for (var col = firstCol; col <= lastCol; col++)
+            {
+                var tileRect = CGRectMake(tileSize.width * CGFloat(col), tileSize.height * CGFloat(row),
+                    tileSize.width, tileSize.height)
+                
+                if CGRectIntersection(rect, tileRect) != CGRectNull
                 {
-                    var tileRect = CGRectMake(tileSize.width * CGFloat(col), tileSize.height * CGFloat(row),
-                        tileSize.width, tileSize.height)
-                    
-                    tileRect = CGRectIntersection(bounds, tileRect)
-                    
-                    tile.drawInRect(tileRect)
-
-                    if Config.showTileLines
+                    if let tile = tileAtCol(col, row:row)
                     {
-                        let bpath = UIBezierPath(rect: tileRect)
-                        UIColor.grayColor().set()
-                        bpath.stroke()
+                        tileRect = CGRectIntersection(bounds, tileRect)
+                        
+                        tile.drawInRect(tileRect)
+                        
+                        if Config.showTileLines
+                        {
+                            let bpath = UIBezierPath(rect: tileRect)
+                            UIColor.grayColor().set()
+                            bpath.stroke()
+                        }
                     }
-                }
-                else
-                {
-                    let a=0
                 }
             }
         }

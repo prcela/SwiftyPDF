@@ -24,4 +24,7 @@ struct Config
     
     // pdf box
     static let pdfBox:CGPDFBox = .MediaBox
+    
+    // minimum zoom scale tolerance before tiling starts
+    static let minScaleToleranceForTiling: CGFloat = 0.15
 }
