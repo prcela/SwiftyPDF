@@ -36,7 +36,7 @@ class ImageScrollView: UIScrollView
         configureForImageSize(imageContentSize)
     }
     
-    func displayTiledImage(pageIdx: Int)
+    func displayTiledImages(pageIdx: Int)
     {
         guard zoomImageView != nil else {return}
         

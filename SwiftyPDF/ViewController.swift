@@ -106,7 +106,7 @@ class ViewController: UIViewController {
         {
             if pageIdx == CGPDFPageGetPageNumber(pageDesc.pdfPage)
             {
-                pageDesc.viewController?.displayTiledImages()
+                pageDesc.viewController?.imageScrollView?.tilingView?.setNeedsDisplay()
             }
         }
     }
@@ -163,6 +163,17 @@ extension ViewController: UIPageViewControllerDelegate
     {
         if completed
         {
+            for previousVC in previousViewControllers
+            {
+                if let imageScrollView = (previousVC as? SinglePageViewController)?.imageScrollView
+                {
+                    // reset scale, remove tiling view
+                    imageScrollView.zoomScale = imageScrollView.minimumZoomScale
+                    imageScrollView.tilingView?.removeFromSuperview()
+                    imageScrollView.tilingView = nil
+                }
+            }
+            
             currentPageIdx = pendingPageIdx
         }
     }

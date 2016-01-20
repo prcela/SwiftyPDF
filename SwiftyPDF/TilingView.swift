@@ -18,6 +18,16 @@ class TilingView: UIView
         return CATiledLayer.self
     }
     
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        
+        backgroundColor = UIColor.clearColor()
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
+    
 
     // Only override drawRect: if you perform custom drawing.
     // An empty implementation adversely affects performance during animation.
@@ -48,6 +58,10 @@ class TilingView: UIView
                         UIColor.grayColor().set()
                         bpath.stroke()
                     }
+                }
+                else
+                {
+                    let a=0
                 }
             }
         }

@@ -40,7 +40,7 @@ class SinglePageViewController: UIViewController {
     
     func displayTiledImages()
     {
-        imageScrollView?.displayTiledImage(CGPDFPageGetPageNumber(pageDesc!.pdfPage))
+        imageScrollView?.displayTiledImages(CGPDFPageGetPageNumber(pageDesc!.pdfPage))
     }
 
     override func didReceiveMemoryWarning() {
@@ -54,5 +54,14 @@ extension SinglePageViewController: UIScrollViewDelegate
 {
     func viewForZoomingInScrollView(scrollView: UIScrollView) -> UIView? {
         return imageScrollView!.zoomImageView
+    }
+    
+    func scrollViewDidEndZooming(scrollView: UIScrollView, withView view: UIView?, atScale scale: CGFloat)
+    {
+        print("Did end zooming at scale \(scale)")
+        if scale > scrollView.minimumZoomScale
+        {
+            displayTiledImages()
+        }
     }
 }
