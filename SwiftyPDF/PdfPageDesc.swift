@@ -10,7 +10,7 @@ import UIKit
 
 class PdfPageDesc: NSObject
 {
-    var viewController: SinglePageViewController?
+    weak var viewController: SinglePageViewController?
     var placeholder: UIImage?
     var idx: Int
 

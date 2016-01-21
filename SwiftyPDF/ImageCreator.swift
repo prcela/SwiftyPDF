@@ -77,12 +77,11 @@ class ImageCreator: NSObject
         }
         
         let pageRect = CGPDFPageGetBoxRect(pdfPage, Config.pdfBox)
-        let scale = Config.pdfSizeMagnifier * UIScreen.mainScreen().scale
+        let scale = Config.pdfSizeMagnifier //* UIScreen.mainScreen().scale
         let bigSize = CGSize(width: pageRect.size.width * scale, height: pageRect.size.height * scale)
         let op = PdfPageToImageOperation(imageSize: bigSize, pdfPage: pdfPage)
         op.completion = {(success: Bool, image: UIImage) in
             
-            let pageIdx = CGPDFPageGetPageNumber(pdfPage)
             let cachedPagesPath = ImageCreator.cachedPagesPath()
             
             let pageDirPath = "\(cachedPagesPath)/\(pageIdx)"
@@ -138,11 +137,14 @@ class ImageCreator: NSObject
                     let rect = CGRect(x: CGFloat(x)*size.width, y: CGFloat(y)*size.height,
                         width: tileSize.width, height: tileSize.height)
                     
-                    let path = "\(pageDirPath)/\(x)_\(y).png"
+                    let tilePath = "\(pageDirPath)/\(x)_\(y).png"
                     
-                    let op = SaveTileOperation(image: image, path: path, rect: rect, pageIdx: pageIdx)
-                    op.tilesQueue = tilesQueue
-                    tilesQueue.addOperation(op)
+                    if !NSFileManager.defaultManager().fileExistsAtPath(tilePath)
+                    {
+                        let op = SaveTileOperation(image: image, path: tilePath, rect: rect, pageIdx: pageIdx)
+                        op.tilesQueue = tilesQueue
+                        tilesQueue.addOperation(op)
+                    }
                 }
             }
 

@@ -11,7 +11,7 @@ import UIKit
 struct Config
 {
     // defines the actual content size of scroll view. contentSize = (real pdf size) x (pdf size magnifier) * (screen scale)
-    static let pdfSizeMagnifier:CGFloat = 1
+    static let pdfSizeMagnifier:CGFloat = 2
     
     // extra zoom allows to go beyond content size
     static let extraZoom: CGFloat = 1

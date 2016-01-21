@@ -18,6 +18,10 @@ class SinglePageViewController: UIViewController {
         }
     }
     
+    deinit {
+        print("deinit single page at index \(pageDesc?.idx)")
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,7 +35,7 @@ class SinglePageViewController: UIViewController {
     {
         if let placeholder = pageDesc?.placeholder
         {
-            let scale = Config.pdfSizeMagnifier * UIScreen.mainScreen().scale
+            let scale = Config.pdfSizeMagnifier //* UIScreen.mainScreen().scale
             let imageContentSize = CGSize(width: scale*placeholder.size.width, height: scale*placeholder.size.height)
             imageScrollView?.displayZoomImage(placeholder, imageContentSize: imageContentSize)
         }
