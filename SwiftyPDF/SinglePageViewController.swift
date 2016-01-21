@@ -12,15 +12,22 @@ class SinglePageViewController: UIViewController {
     
     @IBOutlet weak var imageScrollView: ImageScrollView?
 
-    var pageIdx: Int? {
-        didSet {
-            let pdfDesc = PdfDocument.getPageDesc(pageIdx!)!
-            pdfDesc.createPlaceHolder(view.bounds.size) { success in
-                self.displayZoomImage()
-            }
-            pdfDesc.createTiles()
-        }
-    }
+    var pageIdx: Int?
+//        {
+//        didSet {
+//            let pdfDesc = PdfDocument.getPageDesc(pageIdx!)!
+//            if !pdfDesc.placeholderExists()
+//            {
+//                pdfDesc.createPlaceHolder(view.bounds.size) { success in
+//                    if self.isViewLoaded()
+//                    {
+//                        self.displayZoomImage()
+//                    }
+//                }
+//            }
+//            pdfDesc.createTiles()
+//        }
+//    }
     
     deinit {
         print("deinit single page at index \(pageIdx)")
@@ -32,13 +39,28 @@ class SinglePageViewController: UIViewController {
         
         imageScrollView?.layoutIfNeeded()
         
-        displayZoomImage()
+        let pdfDesc = PdfDocument.getPageDesc(pageIdx!)!
+        
+        if pdfDesc.placeholderExists()
+        {
+            displayZoomImage()
+        }
+        else
+        {
+            pdfDesc.createPlaceHolder(view.bounds.size) { success in
+                self.displayZoomImage()
+            }
+        }
+
+        pdfDesc.createTiles()
     }
     
     func displayZoomImage()
     {
-        if let placeholder =  PdfDocument.getPageDesc(pageIdx!)?.placeholder
+        let path = "\(ImageCreator.cachedPagesPath())/\(pageIdx!)/placeholder.png"
+        if NSFileManager.defaultManager().fileExistsAtPath(path)
         {
+            let placeholder = UIImage(contentsOfFile: path)!
             let pdfPage = PdfDocument.getPage(pageIdx!)!
             let pdfPageSize = CGPDFPageGetBoxRect(pdfPage, Config.pdfBox).size
             let scale = Config.pdfSizeMagnifier //* UIScreen.mainScreen().scale

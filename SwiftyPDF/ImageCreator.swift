@@ -32,6 +32,22 @@ class ImageCreator: NSObject
         return pagesPath
     }
     
+    class func pageDirPath(pageIdx: Int) -> String
+    {
+        let path = "\(cachedPagesPath())/\(pageIdx)"
+        
+        if !NSFileManager.defaultManager().fileExistsAtPath(path)
+        {
+            do {
+                try NSFileManager.defaultManager().createDirectoryAtPath(path, withIntermediateDirectories: false, attributes: nil)
+            } catch let error as NSError {
+                print(error.localizedDescription)
+            }
+        }
+        
+        return path
+    }
+    
     class func clearCachedFiles()
     {
         let fm = NSFileManager.defaultManager()
@@ -47,7 +63,7 @@ class ImageCreator: NSObject
         }
     }
     
-    class func createPlaceHolder(pageIdx: Int, maxSize:CGSize, completion: ((success: Bool, image: UIImage)->Void)?)
+    class func createPlaceHolder(pageIdx: Int, maxSize:CGSize, completion: (success: Bool)->Void)
     {
         guard let pdfPage = PdfDocument.getPage(pageIdx) else {return}
         let pageRect:CGRect = CGPDFPageGetBoxRect(pdfPage, Config.pdfBox)
@@ -55,10 +71,19 @@ class ImageCreator: NSObject
         let scaleX = pageRect.size.width/(maxSize.width*UIScreen.mainScreen().scale)
         let scaleY = pageRect.size.height/(maxSize.height*UIScreen.mainScreen().scale)
         let maxScale = max(scaleX,scaleY)
-        let placeholderSize = CGSizeMake(pageRect.size.width*maxScale, pageRect.size.height*maxScale)
+        let placeholderSize = CGSizeMake(pageRect.size.width/maxScale, pageRect.size.height/maxScale)
         print("placeholder size: \(placeholderSize)")
         let op = PdfPageToImageOperation(imageSize: placeholderSize, pageIdx: pageIdx)
-        op.completion = completion
+        op.completion = {success, image in
+            
+            let pagePath = ImageCreator.pageDirPath(pageIdx)
+            
+            let imageData = UIImagePNGRepresentation(image)
+            let path = "\(pagePath)/placeholder.png"
+            imageData?.writeToFile(path, atomically: false)
+            print("placeholder created for page \(pageIdx)")
+            completion(success: success)
+        }
         placeholdersQueue.addOperation(op)
     }
     
@@ -87,18 +112,7 @@ class ImageCreator: NSObject
         let op = PdfPageToImageOperation(imageSize: bigSize, pageIdx: pageIdx)
         op.completion = {(success: Bool, image: UIImage) in
             
-            let cachedPagesPath = ImageCreator.cachedPagesPath()
-            
-            let pageDirPath = "\(cachedPagesPath)/\(pageIdx)"
-            
-            if !NSFileManager.defaultManager().fileExistsAtPath(pageDirPath)
-            {
-                do {
-                    try NSFileManager.defaultManager().createDirectoryAtPath(pageDirPath, withIntermediateDirectories: false, attributes: nil)
-                } catch let error as NSError {
-                    print(error.localizedDescription)
-                }
-            }
+            let pagePath = ImageCreator.pageDirPath(pageIdx)
             
             //        let imageData = UIImagePNGRepresentation(UIImage(CGImage: image.CGImage!))
             //        let path = "\(cacheDirPath)/\(pageIdx)/big.png"
@@ -142,7 +156,7 @@ class ImageCreator: NSObject
                     let rect = CGRect(x: CGFloat(x)*size.width, y: CGFloat(y)*size.height,
                         width: tileSize.width, height: tileSize.height)
                     
-                    let tilePath = "\(pageDirPath)/\(x)_\(y).png"
+                    let tilePath = "\(pagePath)/\(x)_\(y).png"
                     
                     if !NSFileManager.defaultManager().fileExistsAtPath(tilePath)
                     {

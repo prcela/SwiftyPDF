@@ -10,7 +10,6 @@ import UIKit
 
 class PdfPageDesc: NSObject
 {
-    var placeholder: UIImage?
     var idx: Int
 
     init(pageIdx: Int)
@@ -18,12 +17,15 @@ class PdfPageDesc: NSObject
         self.idx = pageIdx
     }
     
+    func placeholderExists() -> Bool
+    {
+        let path = ImageCreator.pageDirPath(idx) + "/placeholder.png"
+        return NSFileManager.defaultManager().fileExistsAtPath(path)
+    }
+    
     func createPlaceHolder(maxSize: CGSize, completion: (success: Bool)->Void)
     {
-        ImageCreator.createPlaceHolder(idx, maxSize: maxSize) { (success: Bool, image: UIImage) in
-            self.placeholder = image
-            completion(success: success)
-        }
+        ImageCreator.createPlaceHolder(idx, maxSize: maxSize, completion: completion)
     }
     
     func createTiles()
