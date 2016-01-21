@@ -47,12 +47,17 @@ class ImageCreator: NSObject
         }
     }
     
-    class func createPlaceHolder(pageIdx: Int, completion: ((success: Bool, image: UIImage)->Void)?)
+    class func createPlaceHolder(pageIdx: Int, maxSize:CGSize, completion: ((success: Bool, image: UIImage)->Void)?)
     {
         guard let pdfPage = PdfDocument.getPage(pageIdx) else {return}
         let pageRect:CGRect = CGPDFPageGetBoxRect(pdfPage, Config.pdfBox)
-        print("placeholder page rect: \(pageRect)")
-        let op = PdfPageToImageOperation(imageSize: pageRect.size, pdfPage: pdfPage)
+        print("pdf page rect: \(pageRect)")
+        let scaleX = pageRect.size.width/(maxSize.width*UIScreen.mainScreen().scale)
+        let scaleY = pageRect.size.height/(maxSize.height*UIScreen.mainScreen().scale)
+        let maxScale = max(scaleX,scaleY)
+        let placeholderSize = CGSizeMake(pageRect.size.width*maxScale, pageRect.size.height*maxScale)
+        print("placeholder size: \(placeholderSize)")
+        let op = PdfPageToImageOperation(imageSize: placeholderSize, pageIdx: pageIdx)
         op.completion = completion
         placeholdersQueue.addOperation(op)
     }
@@ -79,7 +84,7 @@ class ImageCreator: NSObject
         let pageRect = CGPDFPageGetBoxRect(pdfPage, Config.pdfBox)
         let scale = Config.pdfSizeMagnifier //* UIScreen.mainScreen().scale
         let bigSize = CGSize(width: pageRect.size.width * scale, height: pageRect.size.height * scale)
-        let op = PdfPageToImageOperation(imageSize: bigSize, pdfPage: pdfPage)
+        let op = PdfPageToImageOperation(imageSize: bigSize, pageIdx: pageIdx)
         op.completion = {(success: Bool, image: UIImage) in
             
             let cachedPagesPath = ImageCreator.cachedPagesPath()

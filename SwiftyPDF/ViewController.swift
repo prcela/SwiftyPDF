@@ -11,7 +11,6 @@ import UIKit
 class ViewController: UIViewController {
     
     var pageController: UIPageViewController!
-    var pages = [PdfPageDesc]()
     var currentPageIdx: Int?
     private var pendingPageIdx: Int?
     
@@ -38,19 +37,7 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    
-    private func pageIndexOfViewController(viewController: UIViewController) -> Int?
-    {
-        for (idx,pageDesc) in pages.enumerate()
-        {
-            if viewController == pageDesc.viewController
-            {
-                return idx
-            }
-        }
-        return nil
-    }
-    
+        
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         super.prepareForSegue(segue, sender: sender)
         
@@ -63,32 +50,21 @@ class ViewController: UIViewController {
             pageController.delegate = self
             
             
-            let path = NSBundle.mainBundle().pathForResource("sample", ofType: "pdf")!
-            if let doc = PdfDocument.open(path: path)
-            {
-                let ctPages = CGPDFDocumentGetNumberOfPages(doc)
-                for idx in 1...ctPages
-                {
-                    let pageDesc = PdfPageDesc(pageIdx: idx)
-                    pages.append(pageDesc)
-                    pageDesc.createPlaceHolder()
-                }
-            }
-
-            
             ImageCreator.clearCachedFiles()
             
-            let page = pages.first!
-            if page.viewController == nil
+            let path = NSBundle.mainBundle().pathForResource("sample", ofType: "pdf")!
+            if PdfDocument.open(path: path) != nil
             {
-                page.viewController = storyboard!.instantiateViewControllerWithIdentifier("pdfPage") as? SinglePageViewController
-                page.viewController!.pageDesc = page
-                
-                
-                currentPageIdx = 0
+                if let pageDesc = PdfDocument.pagesDesc.first
+                {
+                    let singlePageVC = storyboard!.instantiateViewControllerWithIdentifier("pdfPage") as! SinglePageViewController
+                    singlePageVC.pageIdx = pageDesc.idx
+                    
+                    currentPageIdx = 0
+                    
+                    pageController.setViewControllers([singlePageVC], direction: .Forward, animated: false, completion: nil)
+                }
             }
-            
-            pageController.setViewControllers([page.viewController!], direction: .Forward, animated: false, completion: nil)
         }
     }
     
@@ -97,13 +73,14 @@ class ViewController: UIViewController {
         let pageIdx = notification.object as! Int
         print("Tiles saved for page: \(pageIdx)")
         
-        for pageDesc in pages
+        for vc in pageController.viewControllers!
         {
-            if pageIdx == pageDesc.idx
+            let singlePageVC = vc as! SinglePageViewController
+            if singlePageVC.pageIdx == pageIdx
             {
-                pageDesc.viewController?.imageScrollView?.tilingView?.setNeedsDisplay()
+                singlePageVC.imageScrollView?.tilingView?.setNeedsDisplay()
             }
-        }
+        }        
     }
 
 }
@@ -112,32 +89,24 @@ extension ViewController: UIPageViewControllerDataSource
 {
     func pageViewController(pageViewController: UIPageViewController, viewControllerAfterViewController viewController: UIViewController) -> UIViewController?
     {
-        if let idx = pageIndexOfViewController(viewController) where idx < pages.count-1
+        let singlePageVC = viewController as! SinglePageViewController
+        if let idx = singlePageVC.pageIdx where idx < PdfDocument.pagesDesc.count-1
         {
-            let nextPage = pages[idx+1]
-            
-            if nextPage.viewController == nil
-            {
-                nextPage.viewController = storyboard!.instantiateViewControllerWithIdentifier("pdfPage") as? SinglePageViewController
-                nextPage.viewController?.pageDesc = nextPage
-            }
-            return nextPage.viewController
+            let nextSinglePageVC = storyboard!.instantiateViewControllerWithIdentifier("pdfPage") as! SinglePageViewController
+            nextSinglePageVC.pageIdx = idx+1
+            return nextSinglePageVC
         }
         return nil
     }
     
     func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController?
     {
-        if let idx = pageIndexOfViewController(viewController) where idx > 0
+        let singlePageVC = viewController as! SinglePageViewController
+        if let idx = singlePageVC.pageIdx where idx > 1
         {
-            let prevPage = pages[idx-1]
-            if prevPage.viewController == nil
-            {
-                prevPage.viewController = storyboard!.instantiateViewControllerWithIdentifier("pdfPage") as? SinglePageViewController
-                prevPage.viewController?.pageDesc = prevPage
-            }
-            
-            return prevPage.viewController
+            let prevSinglePageVC = storyboard!.instantiateViewControllerWithIdentifier("pdfPage") as! SinglePageViewController
+            prevSinglePageVC.pageIdx = idx-1
+            return prevSinglePageVC
         }
         return nil
     }
@@ -150,7 +119,7 @@ extension ViewController: UIPageViewControllerDelegate
     {
         if let vc = pendingViewControllers.last
         {
-            pendingPageIdx = pageIndexOfViewController(vc)
+            pendingPageIdx = (vc as! SinglePageViewController).pageIdx
         }
     }
     

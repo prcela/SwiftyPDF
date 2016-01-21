@@ -11,15 +11,19 @@ import UIKit
 class SinglePageViewController: UIViewController {
     
     @IBOutlet weak var imageScrollView: ImageScrollView?
-    
-    weak var pageDesc: PdfPageDesc? {
+
+    var pageIdx: Int? {
         didSet {
-            pageDesc?.createTiles()
+            let pdfDesc = PdfDocument.getPageDesc(pageIdx!)!
+            pdfDesc.createPlaceHolder(view.bounds.size) { success in
+                self.displayZoomImage()
+            }
+            pdfDesc.createTiles()
         }
     }
     
     deinit {
-        print("deinit single page at index \(pageDesc?.idx)")
+        print("deinit single page at index \(pageIdx)")
     }
     
     
@@ -33,10 +37,12 @@ class SinglePageViewController: UIViewController {
     
     func displayZoomImage()
     {
-        if let placeholder = pageDesc?.placeholder
+        if let placeholder =  PdfDocument.getPageDesc(pageIdx!)?.placeholder
         {
+            let pdfPage = PdfDocument.getPage(pageIdx!)!
+            let pdfPageSize = CGPDFPageGetBoxRect(pdfPage, Config.pdfBox).size
             let scale = Config.pdfSizeMagnifier //* UIScreen.mainScreen().scale
-            let imageContentSize = CGSize(width: scale*placeholder.size.width, height: scale*placeholder.size.height)
+            let imageContentSize = CGSize(width: scale*pdfPageSize.width, height: scale*pdfPageSize.height)
             imageScrollView?.displayZoomImage(placeholder, imageContentSize: imageContentSize)
         }
     }
@@ -44,7 +50,7 @@ class SinglePageViewController: UIViewController {
     
     func displayTiledImages()
     {
-        imageScrollView?.displayTiledImages(pageDesc!.idx)
+        imageScrollView?.displayTiledImages(pageIdx!)
     }
     
     func removeTilingView()

@@ -55,7 +55,7 @@ class TilingView: UIView
                 
                 if CGRectIntersection(rect, tileRect) != CGRectNull
                 {
-                    if let tile = tileAtCol(col, row:row)
+                    if let tile = tileAt(col, row)
                     {
                         tileRect = CGRectIntersection(bounds, tileRect)
                         
@@ -74,7 +74,7 @@ class TilingView: UIView
 
     }
 
-    func tileAtCol(col: Int, row: Int) -> UIImage?
+    func tileAt(col: Int, _ row: Int) -> UIImage?
     {
         let cachedPagesPath = ImageCreator.cachedPagesPath()
         

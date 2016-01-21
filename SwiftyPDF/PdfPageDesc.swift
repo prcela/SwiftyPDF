@@ -10,7 +10,6 @@ import UIKit
 
 class PdfPageDesc: NSObject
 {
-    weak var viewController: SinglePageViewController?
     var placeholder: UIImage?
     var idx: Int
 
@@ -19,11 +18,11 @@ class PdfPageDesc: NSObject
         self.idx = pageIdx
     }
     
-    func createPlaceHolder()
+    func createPlaceHolder(maxSize: CGSize, completion: (success: Bool)->Void)
     {
-        ImageCreator.createPlaceHolder(idx) { (success: Bool, image: UIImage) in
+        ImageCreator.createPlaceHolder(idx, maxSize: maxSize) { (success: Bool, image: UIImage) in
             self.placeholder = image
-            self.viewController?.displayZoomImage()
+            completion(success: success)
         }
     }
     

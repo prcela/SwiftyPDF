@@ -11,20 +11,21 @@ import UIKit
 class PdfPageToImageOperation: NSOperation
 {
     var imageSize: CGSize
-    var pdfPage: CGPDFPage
+    var pageIdx: Int
     var completion: ((success: Bool, image: UIImage)->Void)? = nil
     
-    init(imageSize: CGSize, pdfPage: CGPDFPage)
+    init(imageSize: CGSize, pageIdx: Int)
     {
         self.imageSize = imageSize
-        self.pdfPage = pdfPage
+        self.pageIdx = pageIdx
         
         super.init()
     }
     
-    override func main() {
+    override func main()
+    {
         let width:CGFloat = imageSize.width
-        
+        let pdfPage = PdfDocument.getPage(pageIdx)!
         var pageRect:CGRect = CGPDFPageGetBoxRect(pdfPage, Config.pdfBox)
         let pdfScale:CGFloat = width/pageRect.size.width
         pageRect.size = CGSizeMake(pageRect.size.width*pdfScale, pageRect.size.height*pdfScale)
