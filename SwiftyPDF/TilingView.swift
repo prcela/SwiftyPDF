@@ -79,7 +79,11 @@ class TilingView: UIView
         let cachedPagesPath = ImageCreator.cachedPagesPath()
         
         let path = "\(cachedPagesPath)/\(pageIdx)/\(col)_\(row).png"
-        return UIImage(contentsOfFile: path)
+        if NSFileManager.defaultManager().fileExistsAtPath(path)
+        {
+            return UIImage(contentsOfFile: path)
+        }
+        return nil
     }
 
 }
