@@ -13,8 +13,8 @@ struct Config
     // defines the actual content size of scroll view. contentSize = (real pdf size) x (pdf size magnifier) * (screen scale)
     static let pdfSizeMagnifier:CGFloat = 2
     
-    // extra zoom allows to go beyond content size
-    static let extraZoom: CGFloat = 1
+    // extra zoom allows to go and bounce beyond content size
+    static let bounceZoom: CGFloat = 1.1
     
     // size of tile 
     static let tileSize = CGSize(width: 512, height: 512)

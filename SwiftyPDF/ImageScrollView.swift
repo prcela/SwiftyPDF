@@ -21,6 +21,38 @@ class ImageScrollView: UIScrollView
     }
     */
     
+    override func layoutSubviews()
+    {
+        super.layoutSubviews()
+    
+        // center the zoom view as it becomes smaller than the size of the screen
+        let boundsSize = bounds.size;
+        if var frameToCenter = zoomImageView?.frame
+        {
+        
+            // center horizontally
+            if (frameToCenter.size.width < boundsSize.width) {
+                frameToCenter.origin.x = (boundsSize.width - frameToCenter.size.width) / 2
+            }
+            else
+            {
+                frameToCenter.origin.x = 0;
+            }
+            
+            // center vertically
+            if (frameToCenter.size.height < boundsSize.height)
+            {
+                frameToCenter.origin.y = (boundsSize.height - frameToCenter.size.height) / 2;
+            }
+            else
+            {
+                frameToCenter.origin.y = 0;
+            }
+            
+            zoomImageView!.frame = frameToCenter
+        }
+    }
+    
     func displayZoomImage(image: UIImage, imageContentSize: CGSize)
     {
         guard zoomImageView == nil else {return}
@@ -75,8 +107,8 @@ class ImageScrollView: UIScrollView
         
         // on high resolution screens we have double the pixel density, so we will be seeing every pixel if we limit the
         // maximum zoom scale to 0.5.
-        // Added extra zoom that will enable zooming even more the content size is.
-        let maxScale = Config.extraZoom + 1.0 / UIScreen.mainScreen().scale
+        // Added bounce zoom that will enable zooming even more the content size is.
+        let maxScale = Config.bounceZoom / UIScreen.mainScreen().scale
         
         // don't let minScale exceed maxScale. (If the image is smaller than the screen, we don't want to force it to be zoomed.)
         if (minScale > maxScale) {
