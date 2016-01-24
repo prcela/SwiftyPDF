@@ -19,17 +19,29 @@ class PdfPageDesc: NSObject
     
     func placeholderExists() -> Bool
     {
-        let path = ImageCreator.pageDirPath(idx) + "/placeholder.png"
+        let path = ImageCreator.cachedPagePath(idx) + "/placeholder.png"
         return NSFileManager.defaultManager().fileExistsAtPath(path)
     }
     
-    func createPlaceHolder(maxSize: CGSize, completion: (success: Bool)->Void)
+    func preparePlaceHolder(maxSize: CGSize, completion: (success: Bool)->Void)
     {
-        ImageCreator.createPlaceHolder(idx, maxSize: maxSize, completion: completion)
+        if !placeholderExists()
+        {
+            ImageCreator.createPlaceHolder(idx, maxSize: maxSize, completion: completion)
+        }
     }
     
-    func createTiles()
+    func tilesExists() -> Bool
     {
-        ImageCreator.createTiles(idx)
+        let path = ImageCreator.cachedPagePath(idx) + "/tiles"
+        return NSFileManager.defaultManager().fileExistsAtPath(path)
+    }
+    
+    func prepareTiles()
+    {
+        if !tilesExists()
+        {
+            ImageCreator.createTiles(idx)
+        }
     }
 }

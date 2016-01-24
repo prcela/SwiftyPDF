@@ -60,7 +60,7 @@ class ViewController: UIViewController {
                     let singlePageVC = storyboard!.instantiateViewControllerWithIdentifier("pdfPage") as! SinglePageViewController
                     singlePageVC.pageIdx = pageDesc.idx
                     
-                    currentPageIdx = 0
+                    currentPageIdx = singlePageVC.pageIdx
                     
                     pageController.setViewControllers([singlePageVC], direction: .Forward, animated: false, completion: nil)
                 }

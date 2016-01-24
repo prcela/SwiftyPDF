@@ -47,12 +47,12 @@ class SinglePageViewController: UIViewController {
         }
         else
         {
-            pdfDesc.createPlaceHolder(view.bounds.size) { success in
+            pdfDesc.preparePlaceHolder(view.bounds.size) { success in
                 self.displayZoomImage()
             }
         }
 
-        pdfDesc.createTiles()
+        pdfDesc.prepareTiles()
     }
     
     func displayZoomImage()

@@ -76,9 +76,9 @@ class TilingView: UIView
 
     func tileAt(col: Int, _ row: Int) -> UIImage?
     {
-        let cachedPagesPath = ImageCreator.cachedPagesPath()
+        let cachedTilesPath = ImageCreator.cachedTilesPath(pageIdx)
         
-        let path = "\(cachedPagesPath)/\(pageIdx)/\(col)_\(row).png"
+        let path = "\(cachedTilesPath)/\(col)_\(row).png"
         if NSFileManager.defaultManager().fileExistsAtPath(path)
         {
             return UIImage(contentsOfFile: path)

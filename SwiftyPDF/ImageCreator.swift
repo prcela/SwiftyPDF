@@ -15,27 +15,8 @@ class ImageCreator: NSObject
     static var thumbnailsQueue = NSOperationQueue()
     static var tilesQueue = NSOperationQueue()
     
-    class func cachedPagesPath() -> String
+    private class func assureDirPathExists(path: String)
     {
-        let paths = NSSearchPathForDirectoriesInDomains(.CachesDirectory, .UserDomainMask, true)
-        let pagesPath = "\(paths.first!)/pages"
-        
-        if !NSFileManager.defaultManager().fileExistsAtPath(pagesPath)
-        {
-            do {
-                try NSFileManager.defaultManager().createDirectoryAtPath(pagesPath, withIntermediateDirectories: false, attributes: nil)
-            } catch let error as NSError {
-                print(error.localizedDescription)
-            }
-        }
-        
-        return pagesPath
-    }
-    
-    class func pageDirPath(pageIdx: Int) -> String
-    {
-        let path = "\(cachedPagesPath())/\(pageIdx)"
-        
         if !NSFileManager.defaultManager().fileExistsAtPath(path)
         {
             do {
@@ -44,8 +25,33 @@ class ImageCreator: NSObject
                 print(error.localizedDescription)
             }
         }
+    }
+    
+    class func cachedPagesPath() -> String
+    {
+        let paths = NSSearchPathForDirectoriesInDomains(.CachesDirectory, .UserDomainMask, true)
+        let pagesPath = "\(paths.first!)/pages"
         
+        assureDirPathExists(pagesPath)
+        
+        return pagesPath
+    }
+    
+    class func cachedPagePath(pageIdx: Int) -> String
+    {
+        let path = "\(cachedPagesPath())/\(pageIdx)"
+        
+        assureDirPathExists(path)
         return path
+    }
+    
+    class func cachedTilesPath(pageIdx: Int) -> String
+    {
+        let path = "\(cachedPagePath(pageIdx))/tiles"
+        
+        assureDirPathExists(path)
+        return path
+
     }
     
     class func clearCachedFiles()
@@ -76,7 +82,7 @@ class ImageCreator: NSObject
         let op = PdfPageToImageOperation(imageSize: placeholderSize, pageIdx: pageIdx)
         op.completion = {success, image in
             
-            let pagePath = ImageCreator.pageDirPath(pageIdx)
+            let pagePath = ImageCreator.cachedPagePath(pageIdx)
             
             let imageData = UIImagePNGRepresentation(image)
             let path = "\(pagePath)/placeholder.png"
@@ -112,7 +118,7 @@ class ImageCreator: NSObject
         let op = PdfPageToImageOperation(imageSize: bigSize, pageIdx: pageIdx)
         op.completion = {(success: Bool, image: UIImage) in
             
-            let pagePath = ImageCreator.pageDirPath(pageIdx)
+            let tilesPath = ImageCreator.cachedTilesPath(pageIdx)
             
             //        let imageData = UIImagePNGRepresentation(UIImage(CGImage: image.CGImage!))
             //        let path = "\(cacheDirPath)/\(pageIdx)/big.png"
@@ -156,7 +162,7 @@ class ImageCreator: NSObject
                     let rect = CGRect(x: CGFloat(x)*size.width, y: CGFloat(y)*size.height,
                         width: tileSize.width, height: tileSize.height)
                     
-                    let tilePath = "\(pagePath)/\(x)_\(y).png"
+                    let tilePath = "\(tilesPath)/\(x)_\(y).png"
                     
                     if !NSFileManager.defaultManager().fileExistsAtPath(tilePath)
                     {
