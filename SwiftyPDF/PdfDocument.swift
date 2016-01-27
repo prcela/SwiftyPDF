@@ -33,6 +33,25 @@ class PdfDocument: NSObject
         return CGPDFDocumentGetPage(doc, idx)
     }
     
+    class func getPageSize(idx: Int) -> CGSize
+    {
+        // getting document page is expensive operation, so we are caching the page size
+        if let pageDesc = getPageDesc(idx)
+        {
+            if let pageSize = pageDesc.size
+            {
+                return pageSize
+            }
+            else
+            {
+                pageDesc.size = CGPDFPageGetBoxRect(getPage(idx), Config.pdfBox).size
+                return pageDesc.size!
+            }
+        }
+        
+        return CGSizeZero
+    }
+    
     class func getPageDesc(idx: Int) -> PdfPageDesc?
     {
         return pagesDesc[idx-1]

@@ -61,8 +61,7 @@ class SinglePageViewController: UIViewController {
         if NSFileManager.defaultManager().fileExistsAtPath(path)
         {
             let placeholder = UIImage(contentsOfFile: path)!
-            let pdfPage = PdfDocument.getPage(pageIdx!)!
-            let pdfPageSize = CGPDFPageGetBoxRect(pdfPage, Config.pdfBox).size
+            let pdfPageSize = PdfDocument.getPageSize(pageIdx!)
             let scale = Config.pdfSizeMagnifier //* UIScreen.mainScreen().scale
             let imageContentSize = CGSize(width: scale*pdfPageSize.width, height: scale*pdfPageSize.height)
             imageScrollView?.displayZoomImage(placeholder, imageContentSize: imageContentSize)
