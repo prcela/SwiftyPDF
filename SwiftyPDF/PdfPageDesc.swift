@@ -11,6 +11,7 @@ import UIKit
 class PdfPageDesc: NSObject
 {
     var idx: Int
+    var size: CGSize?
 
     init(pageIdx: Int)
     {

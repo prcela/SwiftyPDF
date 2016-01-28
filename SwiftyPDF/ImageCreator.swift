@@ -71,13 +71,12 @@ class ImageCreator: NSObject
     
     class func createPlaceHolder(pageIdx: Int, maxSize:CGSize, completion: (success: Bool)->Void)
     {
-        guard let pdfPage = PdfDocument.getPage(pageIdx) else {return}
-        let pageRect:CGRect = CGPDFPageGetBoxRect(pdfPage, Config.pdfBox)
-        print("pdf page rect: \(pageRect)")
-        let scaleX = pageRect.size.width/(maxSize.width*UIScreen.mainScreen().scale)
-        let scaleY = pageRect.size.height/(maxSize.height*UIScreen.mainScreen().scale)
+        let pageSize = PdfDocument.getPageSize(pageIdx)
+        print("pdf page size: \(pageSize)")
+        let scaleX = pageSize.width/(maxSize.width*UIScreen.mainScreen().scale)
+        let scaleY = pageSize.height/(maxSize.height*UIScreen.mainScreen().scale)
         let maxScale = max(scaleX,scaleY)
-        let placeholderSize = CGSizeMake(pageRect.size.width/maxScale, pageRect.size.height/maxScale)
+        let placeholderSize = CGSizeMake(pageSize.width/maxScale, pageSize.height/maxScale)
         print("placeholder size: \(placeholderSize)")
         let op = PdfPageToImageOperation(imageSize: placeholderSize, pageIdx: pageIdx)
         op.completion = {success, image in
@@ -99,7 +98,6 @@ class ImageCreator: NSObject
     
     class func createTiles(pageIdx:Int)
     {
-        guard let pdfPage = PdfDocument.getPage(pageIdx) else {return}
         
         print("Creating tiles for page \(pageIdx)")
 
@@ -112,9 +110,9 @@ class ImageCreator: NSObject
             oldTileOp.queuePriority = .Low
         }
         
-        let pageRect = CGPDFPageGetBoxRect(pdfPage, Config.pdfBox)
+        let pageSize = PdfDocument.getPageSize(pageIdx)
         let scale = Config.pdfSizeMagnifier //* UIScreen.mainScreen().scale
-        let bigSize = CGSize(width: pageRect.size.width * scale, height: pageRect.size.height * scale)
+        let bigSize = CGSize(width: pageSize.width * scale, height: pageSize.height * scale)
         let op = PdfPageToImageOperation(imageSize: bigSize, pageIdx: pageIdx)
         op.completion = {(success: Bool, image: UIImage) in
             
