@@ -26,9 +26,10 @@ class ImageScrollView: UIScrollView
         super.layoutSubviews()
     
         // center the zoom view as it becomes smaller than the size of the screen
-        let boundsSize = bounds.size;
+        
         if var frameToCenter = zoomImageView?.frame
         {
+            let boundsSize = bounds.size
         
             // center horizontally
             if (frameToCenter.size.width < boundsSize.width) {
@@ -42,7 +43,7 @@ class ImageScrollView: UIScrollView
             // center vertically
             if (frameToCenter.size.height < boundsSize.height)
             {
-                frameToCenter.origin.y = (boundsSize.height - frameToCenter.size.height) / 2;
+                frameToCenter.origin.y = (boundsSize.height - frameToCenter.size.height) / 2
             }
             else
             {
