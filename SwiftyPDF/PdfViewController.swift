@@ -10,6 +10,7 @@ import UIKit
 
 class PdfViewController: UIViewController {
     
+    var path: String?
     var pageController: UIPageViewController!
     var currentPageIdx: Int?
     private var pendingPageIdx: Int?
@@ -52,8 +53,8 @@ class PdfViewController: UIViewController {
             
             ImageCreator.clearCachedFiles()
             
-            let path = NSBundle.mainBundle().pathForResource("sample", ofType: "pdf")!
-            if PdfDocument.open(path: path) != nil
+            
+            if PdfDocument.open(path: path!) != nil
             {
                 if let pageDesc = PdfDocument.pagesDesc.first
                 {
