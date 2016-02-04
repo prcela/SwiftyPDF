@@ -13,21 +13,6 @@ class SinglePageViewController: UIViewController {
     @IBOutlet weak var imageScrollView: ImageScrollView?
 
     var pageIdx: Int?
-//        {
-//        didSet {
-//            let pdfDesc = PdfDocument.getPageDesc(pageIdx!)!
-//            if !pdfDesc.placeholderExists()
-//            {
-//                pdfDesc.createPlaceHolder(view.bounds.size) { success in
-//                    if self.isViewLoaded()
-//                    {
-//                        self.displayZoomImage()
-//                    }
-//                }
-//            }
-//            pdfDesc.createTiles()
-//        }
-//    }
     
     deinit {
         print("deinit single page at index \(pageIdx)")
@@ -85,6 +70,8 @@ class SinglePageViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func singleTap(sender: AnyObject) {
+    }
 }
 
 extension SinglePageViewController: UIScrollViewDelegate

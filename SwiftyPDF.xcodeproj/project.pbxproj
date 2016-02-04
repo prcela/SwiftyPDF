@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9703776A1C63BB0B002330C4 /* Pdf.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 970377691C63BB0B002330C4 /* Pdf.storyboard */; };
+		9703776C1C63BBF4002330C4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9703776B1C63BBF4002330C4 /* ViewController.swift */; };
 		977388681C4FCE7700E62DF2 /* PdfDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 977388671C4FCE7700E62DF2 /* PdfDocument.swift */; };
 		977AABF11C47B77100CC5572 /* SinglePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 977AABF01C47B77100CC5572 /* SinglePageViewController.swift */; };
 		977AABF31C47C40000CC5572 /* sample.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 977AABF21C47C40000CC5572 /* sample.pdf */; };
@@ -20,7 +22,7 @@
 		977AAC041C4A751700CC5572 /* TilingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 977AAC031C4A751700CC5572 /* TilingView.swift */; };
 		977AAC081C4CE62600CC5572 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 977AAC071C4CE62600CC5572 /* Config.swift */; };
 		97866CA71C45498D00AAE416 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97866CA61C45498D00AAE416 /* AppDelegate.swift */; };
-		97866CA91C45498D00AAE416 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97866CA81C45498D00AAE416 /* ViewController.swift */; };
+		97866CA91C45498D00AAE416 /* PdfViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97866CA81C45498D00AAE416 /* PdfViewController.swift */; };
 		97866CAC1C45498D00AAE416 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97866CAA1C45498D00AAE416 /* Main.storyboard */; };
 		97866CAE1C45498D00AAE416 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 97866CAD1C45498D00AAE416 /* Assets.xcassets */; };
 		97866CB11C45498D00AAE416 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97866CAF1C45498D00AAE416 /* LaunchScreen.storyboard */; };
@@ -46,6 +48,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		970377691C63BB0B002330C4 /* Pdf.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Pdf.storyboard; sourceTree = "<group>"; };
+		9703776B1C63BBF4002330C4 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		977388671C4FCE7700E62DF2 /* PdfDocument.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PdfDocument.swift; sourceTree = "<group>"; };
 		977AABF01C47B77100CC5572 /* SinglePageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SinglePageViewController.swift; sourceTree = "<group>"; };
 		977AABF21C47C40000CC5572 /* sample.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = sample.pdf; sourceTree = "<group>"; };
@@ -60,7 +64,7 @@
 		977AAC071C4CE62600CC5572 /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		97866CA31C45498D00AAE416 /* SwiftyPDF.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftyPDF.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		97866CA61C45498D00AAE416 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		97866CA81C45498D00AAE416 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		97866CA81C45498D00AAE416 /* PdfViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PdfViewController.swift; sourceTree = "<group>"; };
 		97866CAB1C45498D00AAE416 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		97866CAD1C45498D00AAE416 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		97866CB01C45498D00AAE416 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -159,8 +163,10 @@
 			isa = PBXGroup;
 			children = (
 				97866CA61C45498D00AAE416 /* AppDelegate.swift */,
-				97866CA81C45498D00AAE416 /* ViewController.swift */,
+				9703776B1C63BBF4002330C4 /* ViewController.swift */,
+				97866CA81C45498D00AAE416 /* PdfViewController.swift */,
 				97866CAA1C45498D00AAE416 /* Main.storyboard */,
+				970377691C63BB0B002330C4 /* Pdf.storyboard */,
 				97866CAD1C45498D00AAE416 /* Assets.xcassets */,
 				97866CAF1C45498D00AAE416 /* LaunchScreen.storyboard */,
 				97866CB21C45498D00AAE416 /* Info.plist */,
@@ -302,6 +308,7 @@
 				97866CB11C45498D00AAE416 /* LaunchScreen.storyboard in Resources */,
 				97866CAE1C45498D00AAE416 /* Assets.xcassets in Resources */,
 				97866CAC1C45498D00AAE416 /* Main.storyboard in Resources */,
+				9703776A1C63BB0B002330C4 /* Pdf.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -326,10 +333,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				97866CA91C45498D00AAE416 /* ViewController.swift in Sources */,
+				97866CA91C45498D00AAE416 /* PdfViewController.swift in Sources */,
 				977AAC041C4A751700CC5572 /* TilingView.swift in Sources */,
 				977AABF11C47B77100CC5572 /* SinglePageViewController.swift in Sources */,
 				977AAC021C49D24300CC5572 /* SaveTileOperation.swift in Sources */,
+				9703776C1C63BBF4002330C4 /* ViewController.swift in Sources */,
 				977AABF61C47CDDA00CC5572 /* PDFPageView.swift in Sources */,
 				977AAC081C4CE62600CC5572 /* Config.swift in Sources */,
 				977AAC001C49B63100CC5572 /* ImageScrollView.swift in Sources */,

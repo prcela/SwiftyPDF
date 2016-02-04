@@ -1,84 +1,44 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="NnY-uV-ZYR">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
-        <scene sceneID="tne-QT-ifu">
+        <scene sceneID="cWl-no-IoP">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="SwiftyPDF" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="NnY-uV-ZYR" customClass="ViewController" customModule="SwiftyPDF" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
-                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                        <viewControllerLayoutGuide type="top" id="9ra-GO-6Ju"/>
+                        <viewControllerLayoutGuide type="bottom" id="YP3-U3-Nil"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                    <view key="view" contentMode="scaleToFill" id="4JE-Kn-QNH">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PtI-ro-FDo">
-                                <rect key="frame" x="0.0" y="20" width="600" height="580"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TRV-TE-o91">
+                                <rect key="frame" x="255" y="139" width="90" height="58"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="58" id="2t6-vN-HvR"/>
+                                    <constraint firstAttribute="width" constant="90" id="RlE-Qn-V9Y"/>
+                                </constraints>
+                                <state key="normal" title="Open Pdf"/>
                                 <connections>
-                                    <segue destination="NWc-87-WPH" kind="embed" identifier="embed" id="P4A-Bs-I4t"/>
+                                    <action selector="openPdf:" destination="NnY-uV-ZYR" eventType="touchUpInside" id="upz-r1-b0K"/>
                                 </connections>
-                            </containerView>
+                            </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="PtI-ro-FDo" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="0NK-jA-ecF"/>
-                            <constraint firstAttribute="trailing" secondItem="PtI-ro-FDo" secondAttribute="trailing" id="HTM-1E-7ro"/>
-                            <constraint firstItem="PtI-ro-FDo" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="jIz-vh-8dW"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="PtI-ro-FDo" secondAttribute="bottom" id="sIE-i6-2Jh"/>
+                            <constraint firstItem="TRV-TE-o91" firstAttribute="centerX" secondItem="4JE-Kn-QNH" secondAttribute="centerX" id="43k-Tu-2Xt"/>
+                            <constraint firstItem="TRV-TE-o91" firstAttribute="top" secondItem="9ra-GO-6Ju" secondAttribute="bottom" constant="119" id="qfF-6E-ZPV"/>
                         </constraints>
                     </view>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dut-4M-UHv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="487" y="661"/>
-        </scene>
-        <!--Page View Controller-->
-        <scene sceneID="pD9-No-Arc">
-            <objects>
-                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="NWc-87-WPH" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="XV8-nt-9I1" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1315" y="666"/>
-        </scene>
-        <!--Single Page View Controller-->
-        <scene sceneID="fmZ-Zs-3Ly">
-            <objects>
-                <viewController storyboardIdentifier="pdfPage" id="a0w-OZ-8JS" customClass="SinglePageViewController" customModule="SwiftyPDF" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="cVY-n5-DQQ"/>
-                        <viewControllerLayoutGuide type="bottom" id="k67-iW-CK3"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="2jk-3B-UOs">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HI4-gq-Yep" customClass="ImageScrollView" customModule="SwiftyPDF" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="20" width="600" height="580"/>
-                                <connections>
-                                    <outlet property="delegate" destination="a0w-OZ-8JS" id="YgN-Xz-RxE"/>
-                                </connections>
-                            </scrollView>
-                        </subviews>
-                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="trailing" secondItem="HI4-gq-Yep" secondAttribute="trailing" id="J1M-EN-Plh"/>
-                            <constraint firstItem="HI4-gq-Yep" firstAttribute="top" secondItem="cVY-n5-DQQ" secondAttribute="bottom" id="hmN-Z2-F9r"/>
-                            <constraint firstItem="k67-iW-CK3" firstAttribute="top" secondItem="HI4-gq-Yep" secondAttribute="bottom" id="kv1-n9-VtA"/>
-                            <constraint firstItem="HI4-gq-Yep" firstAttribute="leading" secondItem="2jk-3B-UOs" secondAttribute="leading" id="mah-M5-lwf"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outlet property="imageScrollView" destination="HI4-gq-Yep" id="zC3-cZ-b2W"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="EHF-u5-krd" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1315" y="1397"/>
+            <point key="canvasLocation" x="1168" y="1412"/>
         </scene>
     </scenes>
 </document>
