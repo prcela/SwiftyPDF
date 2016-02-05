@@ -10,7 +10,7 @@ import UIKit
 
 class PdfViewController: UIViewController {
     
-    var path: String?
+    var url: NSURL?
     var pageController: UIPageViewController!
     var currentPageIdx: Int?
     private var pendingPageIdx: Int?
@@ -55,7 +55,7 @@ class PdfViewController: UIViewController {
             ImageCreator.clearCachedFiles()
             
             
-            if PdfDocument.open(path: path!) != nil
+            if PdfDocument.open(url: url!) != nil
             {
                 if let pageDesc = PdfDocument.pagesDesc.first
                 {

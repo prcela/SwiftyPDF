@@ -34,8 +34,10 @@ class ViewController: UIViewController {
 
     @IBAction func openPdf(sender: AnyObject)
     {
+        let path = NSBundle.mainBundle().pathForResource("sample", ofType: "pdf")!
+        let url = NSURL(fileURLWithPath: path)
         let pdfViewController = UIStoryboard(name: "Pdf", bundle: nil).instantiateInitialViewController() as! PdfViewController
-        pdfViewController.path = NSBundle.mainBundle().pathForResource("sample", ofType: "pdf")!
+        pdfViewController.url = url
         presentViewController(pdfViewController, animated: true, completion: nil)
     }
 }

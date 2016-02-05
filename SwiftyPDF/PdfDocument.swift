@@ -13,10 +13,9 @@ class PdfDocument: NSObject
     static var doc: CGPDFDocument?
     static var pagesDesc = [PdfPageDesc]()
     
-    class func open(path path: String) -> CGPDFDocument?
+    class func open(url url: NSURL) -> CGPDFDocument?
     {
-        let docURL = NSURL(fileURLWithPath: path)
-        doc = CGPDFDocumentCreateWithURL(docURL)
+        doc = CGPDFDocumentCreateWithURL(url)
         
         pagesDesc.removeAll()
 
