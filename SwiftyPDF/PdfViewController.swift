@@ -15,6 +15,7 @@ class PdfViewController: UIViewController {
     var currentPageIdx: Int?
     private var pendingPageIdx: Int?
     
+    @IBOutlet weak var navBarTopConstraint: NSLayoutConstraint!
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -82,6 +83,9 @@ class PdfViewController: UIViewController {
                 singlePageVC.imageScrollView?.tilingView?.setNeedsDisplay()
             }
         }        
+    }
+    
+    @IBAction func tap(sender: AnyObject) {
     }
 
 }

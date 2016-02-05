@@ -17,6 +17,8 @@ class PdfDocument: NSObject
     {
         let docURL = NSURL(fileURLWithPath: path)
         doc = CGPDFDocumentCreateWithURL(docURL)
+        
+        pagesDesc.removeAll()
 
         let ctPages = CGPDFDocumentGetNumberOfPages(doc)
         for idx in 1...ctPages

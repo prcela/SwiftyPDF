@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Pdf View Controller-->
@@ -20,20 +21,44 @@
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DI6-GV-NjM">
                                 <rect key="frame" x="0.0" y="20" width="600" height="580"/>
                                 <connections>
+                                    <outletCollection property="gestureRecognizers" destination="3Ih-Lj-avv" appends="YES" id="eAf-Zw-6Bq"/>
                                     <segue destination="46N-oL-d93" kind="embed" identifier="embed" id="B84-fg-brV"/>
                                 </connections>
                             </containerView>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fga-8y-NS9">
+                                <rect key="frame" x="0.0" y="-60" width="600" height="44"/>
+                                <items>
+                                    <navigationItem title="Title 1,2,3" id="kwX-qa-qNL"/>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="fga-8y-NS9" firstAttribute="top" secondItem="d4T-vl-Di4" secondAttribute="bottom" constant="-80" id="2tg-Kd-8st"/>
                             <constraint firstItem="S34-xQ-6Mg" firstAttribute="top" secondItem="DI6-GV-NjM" secondAttribute="bottom" id="6fO-tX-d1M"/>
                             <constraint firstAttribute="trailing" secondItem="DI6-GV-NjM" secondAttribute="trailing" id="Ix3-Ae-RA1"/>
+                            <constraint firstItem="fga-8y-NS9" firstAttribute="top" secondItem="ZKA-SD-JbD" secondAttribute="topMargin" constant="20" id="Ja9-p9-VwH"/>
+                            <constraint firstItem="fga-8y-NS9" firstAttribute="leading" secondItem="ZKA-SD-JbD" secondAttribute="leading" id="ace-5C-zd2"/>
                             <constraint firstItem="DI6-GV-NjM" firstAttribute="leading" secondItem="ZKA-SD-JbD" secondAttribute="leading" id="cOh-Yb-ZoI"/>
+                            <constraint firstAttribute="trailing" secondItem="fga-8y-NS9" secondAttribute="trailing" id="x6q-28-EcT"/>
                             <constraint firstItem="DI6-GV-NjM" firstAttribute="top" secondItem="d4T-vl-Di4" secondAttribute="bottom" id="xxs-Et-W1M"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="Ja9-p9-VwH"/>
+                            </mask>
+                        </variation>
                     </view>
+                    <connections>
+                        <outlet property="navBarTopConstraint" destination="2tg-Kd-8st" id="Dmd-Ad-1E7"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BFm-M0-KVH" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="3Ih-Lj-avv">
+                    <connections>
+                        <action selector="tap:" destination="REp-Mq-OS3" id="8b7-xB-tSs"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="487" y="661"/>
         </scene>
@@ -62,7 +87,6 @@
                                 <gestureRecognizers/>
                                 <connections>
                                     <outlet property="delegate" destination="pBk-gt-dj0" id="Hdz-cj-G8j"/>
-                                    <outletCollection property="gestureRecognizers" destination="3Ih-Lj-avv" appends="YES" id="afa-eQ-Mkh"/>
                                 </connections>
                             </scrollView>
                         </subviews>
@@ -79,11 +103,6 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bl0-RU-r7x" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="3Ih-Lj-avv">
-                    <connections>
-                        <action selector="singleTap:" destination="pBk-gt-dj0" id="F23-Wr-opc"/>
-                    </connections>
-                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1315" y="1397"/>
         </scene>

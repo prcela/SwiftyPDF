@@ -70,8 +70,6 @@ class SinglePageViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func singleTap(sender: AnyObject) {
-    }
 }
 
 extension SinglePageViewController: UIScrollViewDelegate
