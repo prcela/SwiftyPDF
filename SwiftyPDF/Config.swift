@@ -28,4 +28,7 @@ struct Config
     
     // minimum zoom scale tolerance before tiling starts
     static let minScaleToleranceForTiling: CGFloat = 0.15
+    
+    // hide status bar while reading pdf
+    static let prefersStatusBarHidden = true
 }

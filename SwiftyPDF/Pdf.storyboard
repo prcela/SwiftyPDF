@@ -26,20 +26,38 @@
                                 </connections>
                             </containerView>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fga-8y-NS9">
-                                <rect key="frame" x="0.0" y="-60" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="20" width="600" height="44"/>
                                 <items>
-                                    <navigationItem title="Title 1,2,3" id="kwX-qa-qNL"/>
+                                    <navigationItem title="Title 1,2,3" id="kwX-qa-qNL">
+                                        <barButtonItem key="rightBarButtonItem" title="Done" id="hff-C3-N8L">
+                                            <connections>
+                                                <action selector="done:" destination="REp-Mq-OS3" id="Esc-77-Mi8"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
                                 </items>
                             </navigationBar>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U9h-YB-k5B">
+                                <rect key="frame" x="0.0" y="500" width="600" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="YWT-hE-BFP"/>
+                                </constraints>
+                                <connections>
+                                    <segue destination="Q2Q-hD-bXW" kind="embed" id="aS7-fH-TJs"/>
+                                </connections>
+                            </containerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="fga-8y-NS9" firstAttribute="top" secondItem="d4T-vl-Di4" secondAttribute="bottom" constant="-80" id="2tg-Kd-8st"/>
+                            <constraint firstItem="fga-8y-NS9" firstAttribute="top" secondItem="d4T-vl-Di4" secondAttribute="bottom" id="2tg-Kd-8st"/>
                             <constraint firstItem="S34-xQ-6Mg" firstAttribute="top" secondItem="DI6-GV-NjM" secondAttribute="bottom" id="6fO-tX-d1M"/>
+                            <constraint firstItem="U9h-YB-k5B" firstAttribute="leading" secondItem="ZKA-SD-JbD" secondAttribute="leading" id="BQD-7m-fbu"/>
                             <constraint firstAttribute="trailing" secondItem="DI6-GV-NjM" secondAttribute="trailing" id="Ix3-Ae-RA1"/>
                             <constraint firstItem="fga-8y-NS9" firstAttribute="top" secondItem="ZKA-SD-JbD" secondAttribute="topMargin" constant="20" id="Ja9-p9-VwH"/>
+                            <constraint firstAttribute="trailing" secondItem="U9h-YB-k5B" secondAttribute="trailing" id="NXA-Ek-ma3"/>
                             <constraint firstItem="fga-8y-NS9" firstAttribute="leading" secondItem="ZKA-SD-JbD" secondAttribute="leading" id="ace-5C-zd2"/>
                             <constraint firstItem="DI6-GV-NjM" firstAttribute="leading" secondItem="ZKA-SD-JbD" secondAttribute="leading" id="cOh-Yb-ZoI"/>
+                            <constraint firstItem="S34-xQ-6Mg" firstAttribute="top" secondItem="U9h-YB-k5B" secondAttribute="bottom" id="d8e-O2-l3Q"/>
                             <constraint firstAttribute="trailing" secondItem="fga-8y-NS9" secondAttribute="trailing" id="x6q-28-EcT"/>
                             <constraint firstItem="DI6-GV-NjM" firstAttribute="top" secondItem="d4T-vl-Di4" secondAttribute="bottom" id="xxs-Et-W1M"/>
                         </constraints>
@@ -50,7 +68,10 @@
                         </variation>
                     </view>
                     <connections>
+                        <outlet property="navBar" destination="fga-8y-NS9" id="oqc-wj-MXv"/>
                         <outlet property="navBarTopConstraint" destination="2tg-Kd-8st" id="Dmd-Ad-1E7"/>
+                        <outlet property="thumbsBottomConstraint" destination="d8e-O2-l3Q" id="R7e-Le-z55"/>
+                        <outlet property="thumbsContainerView" destination="U9h-YB-k5B" id="TVT-Gy-UGk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BFm-M0-KVH" sceneMemberID="firstResponder"/>
@@ -105,6 +126,20 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bl0-RU-r7x" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1315" y="1397"/>
+        </scene>
+        <!--Thumbs View Controller-->
+        <scene sceneID="iSj-Vq-d19">
+            <objects>
+                <viewController id="Q2Q-hD-bXW" customClass="ThumbsViewController" customModule="SwiftyPDF" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="hbq-8t-4W7">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="100"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.5" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HrF-iV-6Jf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="487" y="1214"/>
         </scene>
     </scenes>
 </document>

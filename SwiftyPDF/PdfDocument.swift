@@ -15,9 +15,11 @@ class PdfDocument: NSObject
     
     class func open(url url: NSURL) -> CGPDFDocument?
     {
+        ImageCreator.clearCachedFiles()
+        pagesDesc.removeAll()
+
         doc = CGPDFDocumentCreateWithURL(url)
         
-        pagesDesc.removeAll()
 
         let ctPages = CGPDFDocumentGetNumberOfPages(doc)
         for idx in 1...ctPages
@@ -27,6 +29,14 @@ class PdfDocument: NSObject
         }
 
         return doc
+    }
+    
+    class func close()
+    {
+        doc = nil
+        ImageCreator.clearCachedFiles()
+        pagesDesc.removeAll()
+
     }
     
     class func getPage(idx: Int) -> CGPDFPage?

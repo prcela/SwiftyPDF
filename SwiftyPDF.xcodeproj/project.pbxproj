@@ -28,6 +28,7 @@
 		97866CB11C45498D00AAE416 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97866CAF1C45498D00AAE416 /* LaunchScreen.storyboard */; };
 		97866CBC1C45498D00AAE416 /* SwiftyPDFTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97866CBB1C45498D00AAE416 /* SwiftyPDFTests.swift */; };
 		97866CC71C45498D00AAE416 /* SwiftyPDFUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97866CC61C45498D00AAE416 /* SwiftyPDFUITests.swift */; };
+		97F79E441C66455700EFFED0 /* ThumbsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F79E431C66455700EFFED0 /* ThumbsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +76,7 @@
 		97866CC21C45498D00AAE416 /* SwiftyPDFUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftyPDFUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		97866CC61C45498D00AAE416 /* SwiftyPDFUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyPDFUITests.swift; sourceTree = "<group>"; };
 		97866CC81C45498D00AAE416 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		97F79E431C66455700EFFED0 /* ThumbsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThumbsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -163,17 +165,15 @@
 			isa = PBXGroup;
 			children = (
 				97866CA61C45498D00AAE416 /* AppDelegate.swift */,
-				9703776B1C63BBF4002330C4 /* ViewController.swift */,
-				97866CA81C45498D00AAE416 /* PdfViewController.swift */,
 				97866CAA1C45498D00AAE416 /* Main.storyboard */,
 				970377691C63BB0B002330C4 /* Pdf.storyboard */,
 				97866CAD1C45498D00AAE416 /* Assets.xcassets */,
 				97866CAF1C45498D00AAE416 /* LaunchScreen.storyboard */,
 				97866CB21C45498D00AAE416 /* Info.plist */,
-				977AABF01C47B77100CC5572 /* SinglePageViewController.swift */,
 				977AABF71C47D27800CC5572 /* TiledDelegate.swift */,
 				977AABFB1C49AEDD00CC5572 /* ImageCreator.swift */,
 				977AAC071C4CE62600CC5572 /* Config.swift */,
+				97F79E451C66457400EFFED0 /* ViewControllers */,
 				977388661C4FCD6B00E62DF2 /* Model */,
 				977AAC051C4A752900CC5572 /* Views */,
 				977AAC061C4A754200CC5572 /* Operations */,
@@ -198,6 +198,17 @@
 				97866CC81C45498D00AAE416 /* Info.plist */,
 			);
 			path = SwiftyPDFUITests;
+			sourceTree = "<group>";
+		};
+		97F79E451C66457400EFFED0 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				9703776B1C63BBF4002330C4 /* ViewController.swift */,
+				97866CA81C45498D00AAE416 /* PdfViewController.swift */,
+				977AABF01C47B77100CC5572 /* SinglePageViewController.swift */,
+				97F79E431C66455700EFFED0 /* ThumbsViewController.swift */,
+			);
+			name = ViewControllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -338,6 +349,7 @@
 				977AABF11C47B77100CC5572 /* SinglePageViewController.swift in Sources */,
 				977AAC021C49D24300CC5572 /* SaveTileOperation.swift in Sources */,
 				9703776C1C63BBF4002330C4 /* ViewController.swift in Sources */,
+				97F79E441C66455700EFFED0 /* ThumbsViewController.swift in Sources */,
 				977AABF61C47CDDA00CC5572 /* PDFPageView.swift in Sources */,
 				977AAC081C4CE62600CC5572 /* Config.swift in Sources */,
 				977AAC001C49B63100CC5572 /* ImageScrollView.swift in Sources */,

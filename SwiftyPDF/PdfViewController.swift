@@ -8,14 +8,20 @@
 
 import UIKit
 
+
 class PdfViewController: UIViewController {
     
     var url: NSURL?
     var pageController: UIPageViewController!
     var currentPageIdx: Int?
+    private var barsHidden = true
     private var pendingPageIdx: Int?
     
+    
+    @IBOutlet weak var navBar: UINavigationBar!
     @IBOutlet weak var navBarTopConstraint: NSLayoutConstraint!
+    @IBOutlet weak var thumbsBottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak var thumbsContainerView: UIView!
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -24,14 +30,21 @@ class PdfViewController: UIViewController {
         
     }
     
+    
     deinit
     {
         NSNotificationCenter.defaultCenter().removeObserver(self)
     }
 
-    override func viewDidLoad() {
+    override func viewDidLoad()
+    {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        let statusBarHeight = Config.prefersStatusBarHidden ? 0 : UIApplication.sharedApplication().statusBarFrame.size.height
+        
+        navBarTopConstraint.constant = barsHidden ? -navBar.frame.size.height-statusBarHeight:0
+        thumbsBottomConstraint.constant = barsHidden ? -thumbsContainerView.frame.size.height:0
     }
 
     override func didReceiveMemoryWarning() {
@@ -50,10 +63,6 @@ class PdfViewController: UIViewController {
             
             pageController.dataSource = self
             pageController.delegate = self
-            
-            
-            ImageCreator.clearCachedFiles()
-            
             
             if PdfDocument.open(url: url!) != nil
             {
@@ -85,9 +94,31 @@ class PdfViewController: UIViewController {
         }        
     }
     
-    @IBAction func tap(sender: AnyObject) {
+    
+    override func prefersStatusBarHidden() -> Bool {
+        return Config.prefersStatusBarHidden
+    }
+    
+    @IBAction func tap(sender: AnyObject)
+    {
+        barsHidden = !barsHidden
+        
+        let statusBarHeight = Config.prefersStatusBarHidden ? 0 : UIApplication.sharedApplication().statusBarFrame.size.height
+        
+        navBarTopConstraint.constant = barsHidden ? -navBar.frame.size.height-statusBarHeight:0
+        thumbsBottomConstraint.constant = barsHidden ? -thumbsContainerView.frame.height:0
+        
+        UIView.animateWithDuration(0.5) { () -> Void in
+            self.view.layoutIfNeeded()
+        }
     }
 
+    @IBAction func done(sender: AnyObject)
+    {
+        dismissViewControllerAnimated(true) {
+            PdfDocument.close()
+        }
+    }
 }
 
 extension PdfViewController: UIPageViewControllerDataSource
