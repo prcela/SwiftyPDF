@@ -33,3 +33,8 @@ class ThumbsViewController: UIViewController {
     */
 
 }
+
+extension ThumbsViewController: UICollectionViewDelegate
+{
+    
+}

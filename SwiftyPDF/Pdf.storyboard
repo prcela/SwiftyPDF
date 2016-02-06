@@ -134,10 +134,75 @@
                     <view key="view" contentMode="scaleToFill" id="hbq-8t-4W7">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="100"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="m6M-Fq-vOV">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="100"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="hDF-6c-RFc">
+                                    <size key="itemSize" width="80" height="100"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="20" minY="0.0" maxX="20" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell" id="fkw-yg-yDL" customClass="ThumbCell" customModule="SwiftyPDF" customModuleProvider="target">
+                                        <rect key="frame" x="20" y="0.0" width="80" height="100"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="80" height="100"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1Pc-Hf-Cya">
+                                                    <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qFf-2F-ayL">
+                                                    <rect key="frame" x="8" y="80" width="64" height="20"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstItem="qFf-2F-ayL" firstAttribute="top" secondItem="1Pc-Hf-Cya" secondAttribute="bottom" id="3as-t2-U43"/>
+                                            <constraint firstAttribute="bottomMargin" secondItem="qFf-2F-ayL" secondAttribute="bottom" id="G7f-uN-WHU"/>
+                                            <constraint firstItem="1Pc-Hf-Cya" firstAttribute="top" secondItem="fkw-yg-yDL" secondAttribute="top" id="HSu-Ao-SRb"/>
+                                            <constraint firstAttribute="bottom" secondItem="qFf-2F-ayL" secondAttribute="bottom" id="RF4-W7-yol"/>
+                                            <constraint firstAttribute="trailingMargin" secondItem="qFf-2F-ayL" secondAttribute="trailing" id="Te5-cb-3UQ"/>
+                                            <constraint firstAttribute="trailing" secondItem="1Pc-Hf-Cya" secondAttribute="trailing" id="WrO-AO-cSK"/>
+                                            <constraint firstItem="qFf-2F-ayL" firstAttribute="leading" secondItem="fkw-yg-yDL" secondAttribute="leadingMargin" id="cv4-0k-8cl"/>
+                                            <constraint firstAttribute="bottom" secondItem="1Pc-Hf-Cya" secondAttribute="bottom" constant="20" id="hfo-3I-avj"/>
+                                            <constraint firstItem="1Pc-Hf-Cya" firstAttribute="leading" secondItem="fkw-yg-yDL" secondAttribute="leading" id="p9R-lB-6Qp"/>
+                                        </constraints>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="G7f-uN-WHU"/>
+                                            </mask>
+                                        </variation>
+                                        <connections>
+                                            <outlet property="icon" destination="1Pc-Hf-Cya" id="BNK-Jg-oEC"/>
+                                            <outlet property="numLabel" destination="qFf-2F-ayL" id="x0P-rI-bgs"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="0p8-pU-dO5" id="ApZ-8n-O4V"/>
+                                    <outlet property="delegate" destination="Q2Q-hD-bXW" id="ILV-ST-ph8"/>
+                                </connections>
+                            </collectionView>
+                        </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.5" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="m6M-Fq-vOV" secondAttribute="trailing" id="boF-fc-gDv"/>
+                            <constraint firstItem="m6M-Fq-vOV" firstAttribute="top" secondItem="hbq-8t-4W7" secondAttribute="topMargin" id="daI-1U-bXr"/>
+                            <constraint firstItem="m6M-Fq-vOV" firstAttribute="leading" secondItem="hbq-8t-4W7" secondAttribute="leading" id="gjT-Xv-BEK"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="m6M-Fq-vOV" secondAttribute="bottom" id="tXw-Uy-Ico"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HrF-iV-6Jf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <customObject id="0p8-pU-dO5" customClass="ThumbnailsDataSource" customModule="SwiftyPDF" customModuleProvider="target"/>
             </objects>
             <point key="canvasLocation" x="487" y="1214"/>
         </scene>
