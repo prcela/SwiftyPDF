@@ -10,14 +10,14 @@ import UIKit
 
 let pageTilesSavedNotification = "pageTilesSavedNotification"
 
-class SaveTileOperation: NSOperation
+class SaveTileOperation: Operation
 {
     var image: UIImage
     var path: String
     var rect: CGRect
     var pageIdx: Int
     
-    weak var tilesQueue: NSOperationQueue?
+    weak var tilesQueue: OperationQueue?
     
     init(image: UIImage, path: String, rect: CGRect, pageIdx: Int)
     {
@@ -29,18 +29,18 @@ class SaveTileOperation: NSOperation
     
     override func main() {
         
-        let tileImage = CGImageCreateWithImageInRect(image.CGImage,rect)
+        let tileImage = image.cgImage?.cropping(to: rect)
         
-        let imageData = UIImagePNGRepresentation(UIImage(CGImage: tileImage!))
+        let imageData = UIImagePNGRepresentation(UIImage(cgImage: tileImage!))
         
-        imageData?.writeToFile(path, atomically: false)
+        try? imageData?.write(to: URL(fileURLWithPath: path), options: [])
         
         var ctPageTilesInQueue = 0
         for op in tilesQueue!.operations
         {
             if (op as! SaveTileOperation).pageIdx == self.pageIdx
             {
-                ctPageTilesInQueue++
+                ctPageTilesInQueue += 1
             }
         }
         
@@ -49,8 +49,8 @@ class SaveTileOperation: NSOperation
         // if this was the last one on the page
         if ctPageTilesInQueue <= 1
         {
-            dispatch_async(dispatch_get_main_queue()) {
-                NSNotificationCenter.defaultCenter().postNotificationName(pageTilesSavedNotification, object: self.pageIdx)
+            DispatchQueue.main.async {
+                NotificationCenter.default.post(name: Notification.Name(rawValue: pageTilesSavedNotification), object: self.pageIdx)
             }
         }
     }

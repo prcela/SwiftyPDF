@@ -28,21 +28,21 @@ class PDFPageView: UIView
         
         layer.masksToBounds = true
         layer.cornerRadius = 8.0
-        layer.backgroundColor = UIColor.whiteColor().CGColor
+        layer.backgroundColor = UIColor.white.cgColor
         
     }
     
     func setup()
     {
         let tiledDelegate = tiledLayer.delegate as! TiledDelegate
-        let pageRect = CGPDFPageGetBoxRect(tiledDelegate.page, Config.pdfBox)
+        let pageRect = tiledDelegate.page.getBoxRect(Config.pdfBox)
 
         var w = Int(pageRect.size.width)
         var h = Int(pageRect.size.height)
         // get level count
         var levels = 1
         while (w > 1 && h > 1) {
-            levels++;
+            levels += 1;
             w = w >> 1;
             h = h >> 1;
         }
@@ -53,12 +53,12 @@ class PDFPageView: UIView
 //        tiledLayer.tileSize = CGSize(width: 512, height: 512)
         // setup the size and position of the tiled layer
         zoom = frame.size.width/pageRect.width
-        tiledLayer.bounds = CGRectMake(0.0, 0.0,
-            CGRectGetWidth(pageRect),
-            CGRectGetHeight(pageRect));
-        let x = CGRectGetWidth(tiledLayer.bounds) * tiledLayer.anchorPoint.x;
-        let y = CGRectGetHeight(tiledLayer.bounds) * tiledLayer.anchorPoint.y;
-        tiledLayer.position = CGPointMake(x * zoom, y * zoom);
+        tiledLayer.bounds = CGRect(x: 0.0, y: 0.0,
+            width: pageRect.width,
+            height: pageRect.height);
+        let x = tiledLayer.bounds.width * tiledLayer.anchorPoint.x;
+        let y = tiledLayer.bounds.height * tiledLayer.anchorPoint.y;
+        tiledLayer.position = CGPoint(x: x * zoom, y: y * zoom);
         tiledLayer.transform = CATransform3DMakeScale(zoom, zoom, 1.0);
         
         layer.addSublayer(tiledLayer)

@@ -10,17 +10,17 @@ import UIKit
 
 class ImageCreator: NSObject
 {
-    static var placeholdersQueue = NSOperationQueue()
-    static var bigQueue = NSOperationQueue()
-    static var thumbnailsQueue = NSOperationQueue()
-    static var tilesQueue = NSOperationQueue()
+    static var placeholdersQueue = OperationQueue()
+    static var bigQueue = OperationQueue()
+    static var thumbnailsQueue = OperationQueue()
+    static var tilesQueue = OperationQueue()
     
-    private class func assureDirPathExists(path: String)
+    fileprivate class func assureDirPathExists(_ path: String)
     {
-        if !NSFileManager.defaultManager().fileExistsAtPath(path)
+        if !FileManager.default.fileExists(atPath: path)
         {
             do {
-                try NSFileManager.defaultManager().createDirectoryAtPath(path, withIntermediateDirectories: false, attributes: nil)
+                try FileManager.default.createDirectory(atPath: path, withIntermediateDirectories: false, attributes: nil)
             } catch let error as NSError {
                 print(error.localizedDescription)
             }
@@ -29,7 +29,7 @@ class ImageCreator: NSObject
     
     class func cachedPagesPath() -> String
     {
-        let paths = NSSearchPathForDirectoriesInDomains(.CachesDirectory, .UserDomainMask, true)
+        let paths = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true)
         let pagesPath = "\(paths.first!)/pages"
         
         assureDirPathExists(pagesPath)
@@ -37,7 +37,7 @@ class ImageCreator: NSObject
         return pagesPath
     }
     
-    class func cachedPagePath(pageIdx: Int) -> String
+    class func cachedPagePath(_ pageIdx: Int) -> String
     {
         let path = "\(cachedPagesPath())/\(pageIdx)"
         
@@ -45,7 +45,7 @@ class ImageCreator: NSObject
         return path
     }
     
-    class func cachedTilesPath(pageIdx: Int) -> String
+    class func cachedTilesPath(_ pageIdx: Int) -> String
     {
         let path = "\(cachedPagePath(pageIdx))/tiles"
         
@@ -56,27 +56,27 @@ class ImageCreator: NSObject
     
     class func clearCachedFiles()
     {
-        let fm = NSFileManager.defaultManager()
+        let fm = FileManager.default
         do {
             let cachedPath = cachedPagesPath()
-            let paths = try fm.contentsOfDirectoryAtPath(cachedPath)
+            let paths = try fm.contentsOfDirectory(atPath: cachedPath)
             for path in paths
             {
-                try fm.removeItemAtPath("\(cachedPath)/\(path)")
+                try fm.removeItem(atPath: "\(cachedPath)/\(path)")
             }
         } catch let error as NSError {
             print(error.localizedDescription)
         }
     }
     
-    class func createPlaceHolder(pageIdx: Int, maxSize:CGSize, completion: (success: Bool)->Void)
+    class func createPlaceHolder(_ pageIdx: Int, maxSize:CGSize, completion: @escaping (_ success: Bool)->Void)
     {
         let pageSize = PdfDocument.getPageSize(pageIdx)
         print("pdf page size: \(pageSize)")
-        let scaleX = pageSize.width/(maxSize.width*UIScreen.mainScreen().scale)
-        let scaleY = pageSize.height/(maxSize.height*UIScreen.mainScreen().scale)
+        let scaleX = pageSize.width/(maxSize.width*UIScreen.main.scale)
+        let scaleY = pageSize.height/(maxSize.height*UIScreen.main.scale)
         let maxScale = max(scaleX,scaleY)
-        let placeholderSize = CGSizeMake(pageSize.width/maxScale, pageSize.height/maxScale)
+        let placeholderSize = CGSize(width: pageSize.width/maxScale, height: pageSize.height/maxScale)
         print("placeholder size: \(placeholderSize)")
         let op = PdfPageToImageOperation(imageSize: placeholderSize, pageIdx: pageIdx)
         op.completion = {success, image in
@@ -85,9 +85,9 @@ class ImageCreator: NSObject
             
             let imageData = UIImagePNGRepresentation(image)
             let path = "\(pagePath)/placeholder.png"
-            imageData?.writeToFile(path, atomically: false)
+            try? imageData?.write(to: URL(fileURLWithPath: path), options: [])
             print("placeholder created for page \(pageIdx)")
-            completion(success: success)
+            completion(success)
         }
         placeholdersQueue.addOperation(op)
     }
@@ -96,7 +96,7 @@ class ImageCreator: NSObject
     {
     }
     
-    class func createTiles(pageIdx:Int)
+    class func createTiles(_ pageIdx:Int)
     {
         
         print("Creating tiles for page \(pageIdx)")
@@ -107,7 +107,7 @@ class ImageCreator: NSObject
         // old ops should have the lower priority than tiles from this page
         for oldTileOp in tilesQueue.operations
         {
-            oldTileOp.queuePriority = .Low
+            oldTileOp.queuePriority = .low
         }
         
         let pageSize = PdfDocument.getPageSize(pageIdx)
@@ -137,16 +137,14 @@ class ImageCreator: NSObject
             
             
             if (cols > fullColumns) {
-                fullColumns++
+                fullColumns += 1
             }
             if (rows > fullRows) {
-                fullRows++
+                fullRows += 1
             }
             
-            for (var y = 0; y < Int(fullRows); ++y)
-            {
-                for (var x = 0; x < Int(fullColumns); ++x)
-                {
+            for y in 0..<Int(fullRows) {
+                for x in 0..<Int(fullColumns) {
                     var tileSize = size
                     if (x + 1 == Int(fullColumns) && remainderWidth > 0) {
                         // Last column
@@ -162,7 +160,7 @@ class ImageCreator: NSObject
                     
                     let tilePath = "\(tilesPath)/\(x)_\(y).png"
                     
-                    if !NSFileManager.defaultManager().fileExistsAtPath(tilePath)
+                    if !FileManager.default.fileExists(atPath: tilePath)
                     {
                         let op = SaveTileOperation(image: image, path: tilePath, rect: rect, pageIdx: pageIdx)
                         op.tilesQueue = tilesQueue

@@ -32,12 +32,12 @@ class ViewController: UIViewController {
     }
     */
 
-    @IBAction func openPdf(sender: AnyObject)
+    @IBAction func openPdf(_ sender: AnyObject)
     {
-        let path = NSBundle.mainBundle().pathForResource("sample", ofType: "pdf")!
-        let url = NSURL(fileURLWithPath: path)
+        let path = Bundle.main.path(forResource: "big_pdf_1", ofType: "pdf")!
+        let url = URL(fileURLWithPath: path)
         let pdfViewController = UIStoryboard(name: "Pdf", bundle: nil).instantiateInitialViewController() as! PdfViewController
         pdfViewController.url = url
-        presentViewController(pdfViewController, animated: true, completion: nil)
+        present(pdfViewController, animated: true, completion: nil)
     }
 }

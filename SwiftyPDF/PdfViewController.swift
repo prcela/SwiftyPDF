@@ -11,11 +11,11 @@ import UIKit
 
 class PdfViewController: UIViewController {
     
-    var url: NSURL?
+    var url: URL?
     var pageController: UIPageViewController!
     var currentPageIdx: Int?
-    private var barsHidden = true
-    private var pendingPageIdx: Int?
+    fileprivate var barsHidden = true
+    fileprivate var pendingPageIdx: Int?
     
     
     @IBOutlet weak var navBar: UINavigationBar!
@@ -26,14 +26,14 @@ class PdfViewController: UIViewController {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "onPageTilesSaved:", name: pageTilesSavedNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(PdfViewController.onPageTilesSaved(_:)), name: NSNotification.Name(rawValue: pageTilesSavedNotification), object: nil)
         
     }
     
     
     deinit
     {
-        NSNotificationCenter.defaultCenter().removeObserver(self)
+        NotificationCenter.default.removeObserver(self)
     }
 
     override func viewDidLoad()
@@ -41,7 +41,7 @@ class PdfViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        let statusBarHeight = Config.prefersStatusBarHidden ? 0 : UIApplication.sharedApplication().statusBarFrame.size.height
+        let statusBarHeight = Config.prefersStatusBarHidden ? 0 : UIApplication.shared.statusBarFrame.size.height
         
         navBarTopConstraint.constant = barsHidden ? -navBar.frame.size.height-statusBarHeight:0
         thumbsBottomConstraint.constant = barsHidden ? -thumbsContainerView.frame.size.height:0
@@ -53,13 +53,13 @@ class PdfViewController: UIViewController {
     }
     
         
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        super.prepareForSegue(segue, sender: sender)
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: sender)
         
         if segue.identifier == "embed"
         {
             
-            pageController = segue.destinationViewController as! UIPageViewController
+            pageController = segue.destination as! UIPageViewController
             
             pageController.dataSource = self
             pageController.delegate = self
@@ -68,18 +68,18 @@ class PdfViewController: UIViewController {
             {
                 if let pageDesc = PdfDocument.pagesDesc.first
                 {
-                    let singlePageVC = storyboard!.instantiateViewControllerWithIdentifier("pdfPage") as! SinglePageViewController
+                    let singlePageVC = storyboard!.instantiateViewController(withIdentifier: "pdfPage") as! SinglePageViewController
                     singlePageVC.pageIdx = pageDesc.idx
                     
                     currentPageIdx = singlePageVC.pageIdx
                     
-                    pageController.setViewControllers([singlePageVC], direction: .Forward, animated: false, completion: nil)
+                    pageController.setViewControllers([singlePageVC], direction: .forward, animated: false, completion: nil)
                 }
             }
         }
     }
     
-    func onPageTilesSaved(notification: NSNotification)
+    func onPageTilesSaved(_ notification: Notification)
     {
         let pageIdx = notification.object as! Int
         print("Tiles saved for page: \(pageIdx)")
@@ -95,27 +95,27 @@ class PdfViewController: UIViewController {
     }
     
     
-    override func prefersStatusBarHidden() -> Bool {
+    override var prefersStatusBarHidden : Bool {
         return Config.prefersStatusBarHidden
     }
     
-    @IBAction func tap(sender: AnyObject)
+    @IBAction func tap(_ sender: AnyObject)
     {
         barsHidden = !barsHidden
         
-        let statusBarHeight = Config.prefersStatusBarHidden ? 0 : UIApplication.sharedApplication().statusBarFrame.size.height
+        let statusBarHeight = Config.prefersStatusBarHidden ? 0 : UIApplication.shared.statusBarFrame.size.height
         
         navBarTopConstraint.constant = barsHidden ? -navBar.frame.size.height-statusBarHeight:0
         thumbsBottomConstraint.constant = barsHidden ? -thumbsContainerView.frame.height:0
         
-        UIView.animateWithDuration(0.5) { () -> Void in
+        UIView.animate(withDuration: 0.5, animations: { () -> Void in
             self.view.layoutIfNeeded()
-        }
+        }) 
     }
 
-    @IBAction func done(sender: AnyObject)
+    @IBAction func done(_ sender: AnyObject)
     {
-        dismissViewControllerAnimated(true) {
+        dismiss(animated: true) {
             PdfDocument.close()
         }
     }
@@ -123,24 +123,24 @@ class PdfViewController: UIViewController {
 
 extension PdfViewController: UIPageViewControllerDataSource
 {
-    func pageViewController(pageViewController: UIPageViewController, viewControllerAfterViewController viewController: UIViewController) -> UIViewController?
+    func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController?
     {
         let singlePageVC = viewController as! SinglePageViewController
-        if let idx = singlePageVC.pageIdx where idx < PdfDocument.pagesDesc.count-1
+        if let idx = singlePageVC.pageIdx, idx < PdfDocument.pagesDesc.count-1
         {
-            let nextSinglePageVC = storyboard!.instantiateViewControllerWithIdentifier("pdfPage") as! SinglePageViewController
+            let nextSinglePageVC = storyboard!.instantiateViewController(withIdentifier: "pdfPage") as! SinglePageViewController
             nextSinglePageVC.pageIdx = idx+1
             return nextSinglePageVC
         }
         return nil
     }
     
-    func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController?
+    func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController?
     {
         let singlePageVC = viewController as! SinglePageViewController
-        if let idx = singlePageVC.pageIdx where idx > 1
+        if let idx = singlePageVC.pageIdx, idx > 1
         {
-            let prevSinglePageVC = storyboard!.instantiateViewControllerWithIdentifier("pdfPage") as! SinglePageViewController
+            let prevSinglePageVC = storyboard!.instantiateViewController(withIdentifier: "pdfPage") as! SinglePageViewController
             prevSinglePageVC.pageIdx = idx-1
             return prevSinglePageVC
         }
@@ -151,7 +151,7 @@ extension PdfViewController: UIPageViewControllerDataSource
 extension PdfViewController: UIPageViewControllerDelegate
 {
     
-    func pageViewController(pageViewController: UIPageViewController, willTransitionToViewControllers pendingViewControllers: [UIViewController])
+    func pageViewController(_ pageViewController: UIPageViewController, willTransitionTo pendingViewControllers: [UIViewController])
     {
         if let vc = pendingViewControllers.last
         {
@@ -159,7 +159,7 @@ extension PdfViewController: UIPageViewControllerDelegate
         }
     }
     
-    func pageViewController(pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool)
+    func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool)
     {
         if completed
         {

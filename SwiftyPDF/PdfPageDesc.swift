@@ -21,10 +21,10 @@ class PdfPageDesc: NSObject
     func placeholderExists() -> Bool
     {
         let path = ImageCreator.cachedPagePath(idx) + "/placeholder.png"
-        return NSFileManager.defaultManager().fileExistsAtPath(path)
+        return FileManager.default.fileExists(atPath: path)
     }
     
-    func preparePlaceHolder(maxSize: CGSize, completion: (success: Bool)->Void)
+    func preparePlaceHolder(_ maxSize: CGSize, completion: @escaping (_ success: Bool)->Void)
     {
         if !placeholderExists()
         {
@@ -35,7 +35,7 @@ class PdfPageDesc: NSObject
     func tilesExists() -> Bool
     {
         let path = ImageCreator.cachedPagePath(idx) + "/tiles"
-        return NSFileManager.defaultManager().fileExistsAtPath(path)
+        return FileManager.default.fileExists(atPath: path)
     }
     
     func prepareTiles()
