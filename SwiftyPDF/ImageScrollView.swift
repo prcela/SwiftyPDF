@@ -54,7 +54,7 @@ class ImageScrollView: UIScrollView
         }
     }
     
-    func displayZoomImage(image: UIImage, imageContentSize: CGSize)
+    func displayZoomImage(_ image: UIImage, imageContentSize: CGSize)
     {
         guard zoomImageView == nil else {return}
         
@@ -62,14 +62,14 @@ class ImageScrollView: UIScrollView
         self.zoomScale = 1.0
         
         // make views to display the new image
-        zoomImageView = UIImageView(frame: CGRect(origin: CGPointZero, size: imageContentSize))
+        zoomImageView = UIImageView(frame: CGRect(origin: CGPoint.zero, size: imageContentSize))
         zoomImageView!.image = image
         addSubview(zoomImageView!)
 
         configureForImageSize(imageContentSize)
     }
     
-    func displayTiledImages(pageIdx: Int)
+    func displayTiledImages(_ pageIdx: Int)
     {
         guard zoomImageView != nil else {return}
         
@@ -85,7 +85,7 @@ class ImageScrollView: UIScrollView
         }
     }
     
-    func configureForImageSize(imageContentSize: CGSize)
+    func configureForImageSize(_ imageContentSize: CGSize)
     {
         print("image content size: \(imageContentSize)")
         contentSize = imageContentSize
@@ -109,7 +109,7 @@ class ImageScrollView: UIScrollView
         // on high resolution screens we have double the pixel density, so we will be seeing every pixel if we limit the
         // maximum zoom scale to 0.5.
         // Added bounce zoom that will enable zooming even more the content size is.
-        let maxScale = Config.extraZoom / UIScreen.mainScreen().scale
+        let maxScale = Config.extraZoom / UIScreen.main.scale
         
         // don't let minScale exceed maxScale. (If the image is smaller than the screen, we don't want to force it to be zoomed.)
         if (minScale > maxScale) {

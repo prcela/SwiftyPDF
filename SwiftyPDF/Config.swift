@@ -24,7 +24,7 @@ struct Config
     static let showTileLines = true
     
     // pdf box
-    static let pdfBox:CGPDFBox = .MediaBox
+    static let pdfBox:CGPDFBox = .mediaBox
     
     // minimum zoom scale tolerance before tiling starts
     static let minScaleToleranceForTiling: CGFloat = 0.15

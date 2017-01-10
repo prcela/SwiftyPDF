@@ -31,6 +31,7 @@
 		97F79E441C66455700EFFED0 /* ThumbsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F79E431C66455700EFFED0 /* ThumbsViewController.swift */; };
 		97F79E471C66624C00EFFED0 /* ThumbnailsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F79E461C66624C00EFFED0 /* ThumbnailsDataSource.swift */; };
 		97F79E491C66644000EFFED0 /* ThumbCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F79E481C66644000EFFED0 /* ThumbCell.swift */; };
+		E22CFE741E24FA92006833C8 /* big_pdf_1.pdf in Resources */ = {isa = PBXBuildFile; fileRef = E22CFE731E24FA92006833C8 /* big_pdf_1.pdf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,6 +82,7 @@
 		97F79E431C66455700EFFED0 /* ThumbsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThumbsViewController.swift; sourceTree = "<group>"; };
 		97F79E461C66624C00EFFED0 /* ThumbnailsDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThumbnailsDataSource.swift; sourceTree = "<group>"; };
 		97F79E481C66644000EFFED0 /* ThumbCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThumbCell.swift; sourceTree = "<group>"; };
+		E22CFE731E24FA92006833C8 /* big_pdf_1.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = big_pdf_1.pdf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +123,7 @@
 			isa = PBXGroup;
 			children = (
 				977AABF21C47C40000CC5572 /* sample.pdf */,
+				E22CFE731E24FA92006833C8 /* big_pdf_1.pdf */,
 			);
 			name = Resources;
 			path = ..;
@@ -285,13 +288,16 @@
 				TargetAttributes = {
 					97866CA21C45498D00AAE416 = {
 						CreatedOnToolsVersion = 7.2;
+						LastSwiftMigration = 0810;
 					};
 					97866CB61C45498D00AAE416 = {
 						CreatedOnToolsVersion = 7.2;
+						LastSwiftMigration = 0810;
 						TestTargetID = 97866CA21C45498D00AAE416;
 					};
 					97866CC11C45498D00AAE416 = {
 						CreatedOnToolsVersion = 7.2;
+						LastSwiftMigration = 0810;
 						TestTargetID = 97866CA21C45498D00AAE416;
 					};
 				};
@@ -321,6 +327,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E22CFE741E24FA92006833C8 /* big_pdf_1.pdf in Resources */,
 				977AABF31C47C40000CC5572 /* sample.pdf in Resources */,
 				97866CB11C45498D00AAE416 /* LaunchScreen.storyboard in Resources */,
 				97866CAE1C45498D00AAE416 /* Assets.xcassets in Resources */,
@@ -513,6 +520,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.100kas.SwiftyPDF;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -525,6 +533,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.100kas.SwiftyPDF;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -536,6 +545,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.100kas.SwiftyPDFTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SwiftyPDF.app/SwiftyPDF";
 			};
 			name = Debug;
@@ -548,6 +558,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.100kas.SwiftyPDFTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SwiftyPDF.app/SwiftyPDF";
 			};
 			name = Release;
@@ -559,6 +570,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.100kas.SwiftyPDFUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = SwiftyPDF;
 				USES_XCTRUNNER = YES;
 			};
@@ -571,6 +583,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.100kas.SwiftyPDFUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = SwiftyPDF;
 				USES_XCTRUNNER = YES;
 			};

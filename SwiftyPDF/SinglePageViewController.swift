@@ -43,7 +43,7 @@ class SinglePageViewController: UIViewController {
     func displayZoomImage()
     {
         let path = "\(ImageCreator.cachedPagesPath())/\(pageIdx!)/placeholder.png"
-        if NSFileManager.defaultManager().fileExistsAtPath(path)
+        if FileManager.default.fileExists(atPath: path)
         {
             let placeholder = UIImage(contentsOfFile: path)!
             let pdfPageSize = PdfDocument.getPageSize(pageIdx!)
@@ -74,11 +74,11 @@ class SinglePageViewController: UIViewController {
 
 extension SinglePageViewController: UIScrollViewDelegate
 {
-    func viewForZoomingInScrollView(scrollView: UIScrollView) -> UIView? {
+    func viewForZooming(in scrollView: UIScrollView) -> UIView? {
         return imageScrollView!.zoomImageView
     }
     
-    func scrollViewDidEndZooming(scrollView: UIScrollView, withView view: UIView?, atScale scale: CGFloat)
+    func scrollViewDidEndZooming(_ scrollView: UIScrollView, with view: UIView?, atScale scale: CGFloat)
     {
         print("Did end zooming at scale \(scale)")
         if scale > scrollView.minimumZoomScale + Config.minScaleToleranceForTiling

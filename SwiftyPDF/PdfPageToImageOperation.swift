@@ -8,11 +8,11 @@
 
 import UIKit
 
-class PdfPageToImageOperation: NSOperation
+class PdfPageToImageOperation: Operation
 {
     var imageSize: CGSize
     var pageIdx: Int
-    var completion: ((success: Bool, image: UIImage)->Void)? = nil
+    var completion: ((_ success: Bool, _ image: UIImage)->Void)? = nil
     
     init(imageSize: CGSize, pageIdx: Int)
     {
@@ -26,43 +26,43 @@ class PdfPageToImageOperation: NSOperation
     {
         let width:CGFloat = imageSize.width
         let pdfPage = PdfDocument.getPage(pageIdx)!
-        var pageRect:CGRect = CGPDFPageGetBoxRect(pdfPage, Config.pdfBox)
+        var pageRect:CGRect = pdfPage.getBoxRect(Config.pdfBox)
         let pdfScale:CGFloat = width/pageRect.size.width
-        pageRect.size = CGSizeMake(pageRect.size.width*pdfScale, pageRect.size.height*pdfScale)
-        pageRect.origin = CGPointZero
+        pageRect.size = CGSize(width: pageRect.size.width*pdfScale, height: pageRect.size.height*pdfScale)
+        pageRect.origin = CGPoint.zero
         
         UIGraphicsBeginImageContext(pageRect.size)
         
-        let context:CGContextRef = UIGraphicsGetCurrentContext()!
+        let context:CGContext = UIGraphicsGetCurrentContext()!
         
         // White BG
-        CGContextSetRGBFillColor(context, 1.0,1.0,1.0,1.0)
-        CGContextFillRect(context,pageRect)
+        context.setFillColor(red: 1.0,green: 1.0,blue: 1.0,alpha: 1.0)
+        context.fill(pageRect)
         
         
         
         // ***********
         // Next 3 lines makes the rotations so that the page look in the right direction
         // ***********
-        CGContextTranslateCTM(context, 0.0, pageRect.size.height)
-        CGContextScaleCTM(context, 1.0, -1.0)
-        CGContextSaveGState(context)
+        context.translateBy(x: 0.0, y: pageRect.size.height)
+        context.scaleBy(x: 1.0, y: -1.0)
+        context.saveGState()
         
 //        CGContextConcatCTM(context, CGPDFPageGetDrawingTransform(pdfPage, CGPDFBox.CropBox, pageRect, 0, true))
-        CGContextScaleCTM(context, pdfScale, pdfScale)
+        context.scaleBy(x: pdfScale, y: pdfScale)
         
-        CGContextSetInterpolationQuality(context, .High)
-        CGContextSetRenderingIntent(context, .RenderingIntentDefault)
+        context.interpolationQuality = .high
+        context.setRenderingIntent(.defaultIntent)
         
-        CGContextDrawPDFPage(context, pdfPage)
-        CGContextRestoreGState(context)
+        context.drawPDFPage(pdfPage)
+        context.restoreGState()
         
-        let img:UIImage = UIGraphicsGetImageFromCurrentImageContext()
+        let img:UIImage = UIGraphicsGetImageFromCurrentImageContext()!
         
         UIGraphicsEndImageContext()
         
-        dispatch_async(dispatch_get_main_queue()) {
-            self.completion?(success: true, image: img)
+        DispatchQueue.main.async {
+            self.completion?(true, img)
         }
 
 

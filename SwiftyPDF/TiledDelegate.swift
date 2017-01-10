@@ -16,21 +16,21 @@ class TiledDelegate: NSObject
         self.page = page
     }
 
-    override func drawLayer(layer: CALayer, inContext ctx: CGContext)
+    func drawLayer(_ layer: CALayer, inContext ctx: CGContext)
     {
-        let pageRect:CGRect = CGPDFPageGetBoxRect(page, Config.pdfBox)
+        let pageRect:CGRect = page.getBoxRect(Config.pdfBox)
 //        let pdfScale:CGFloat = width/pageRect.size.width
 //        pageRect.size = CGSizeMake(pageRect.size.width*pdfScale, pageRect.size.height*pdfScale)
 //        pageRect.origin = CGPointZero
         
-        CGContextSaveGState(ctx)
-        CGContextTranslateCTM(ctx, 0.0, pageRect.size.height)
-        CGContextScaleCTM(ctx, 1.0, -1.0)
-        CGContextConcatCTM(ctx, CGPDFPageGetDrawingTransform(page, Config.pdfBox, pageRect, 0, true))
+        ctx.saveGState()
+        ctx.translateBy(x: 0.0, y: pageRect.size.height)
+        ctx.scaleBy(x: 1.0, y: -1.0)
+        ctx.concatenate(page.getDrawingTransform(Config.pdfBox, rect: pageRect, rotate: 0, preserveAspectRatio: true))
         
 
-        CGContextDrawPDFPage(ctx, page)
-        CGContextRestoreGState(ctx)
+        ctx.drawPDFPage(page)
+        ctx.restoreGState()
     }
 
 }

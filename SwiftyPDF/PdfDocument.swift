@@ -13,16 +13,16 @@ class PdfDocument: NSObject
     static var doc: CGPDFDocument?
     static var pagesDesc = [PdfPageDesc]()
     
-    class func open(url url: NSURL) -> CGPDFDocument?
+    class func open(url: URL) -> CGPDFDocument?
     {
         ImageCreator.clearCachedFiles()
         pagesDesc.removeAll()
 
-        doc = CGPDFDocumentCreateWithURL(url)
+        doc = CGPDFDocument(url as CFURL)
         
 
-        let ctPages = CGPDFDocumentGetNumberOfPages(doc)
-        for idx in 1...ctPages
+        let ctPages = doc?.numberOfPages
+        for idx in 1...ctPages!
         {
             let pageDesc = PdfPageDesc(pageIdx: idx)
             pagesDesc.append(pageDesc)
@@ -39,12 +39,12 @@ class PdfDocument: NSObject
 
     }
     
-    class func getPage(idx: Int) -> CGPDFPage?
+    class func getPage(_ idx: Int) -> CGPDFPage?
     {
-        return CGPDFDocumentGetPage(doc, idx)
+        return doc?.page(at: idx)
     }
     
-    class func getPageSize(idx: Int) -> CGSize
+    class func getPageSize(_ idx: Int) -> CGSize
     {
         // getting document page is expensive operation, so we are caching the page size
         if let pageDesc = getPageDesc(idx)
@@ -55,15 +55,15 @@ class PdfDocument: NSObject
             }
             else
             {
-                pageDesc.size = CGPDFPageGetBoxRect(getPage(idx), Config.pdfBox).size
+                pageDesc.size = getPage(idx)?.getBoxRect(Config.pdfBox).size
                 return pageDesc.size!
             }
         }
         
-        return CGSizeZero
+        return CGSize.zero
     }
     
-    class func getPageDesc(idx: Int) -> PdfPageDesc?
+    class func getPageDesc(_ idx: Int) -> PdfPageDesc?
     {
         return pagesDesc[idx-1]
     }

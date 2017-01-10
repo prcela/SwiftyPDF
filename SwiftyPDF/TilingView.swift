@@ -13,7 +13,7 @@ class TilingView: UIView
     
     var pageIdx: Int!
     
-    override class func layerClass() -> AnyClass
+    override class var layerClass : AnyClass
     {
         return CATiledLayer.self
     }
@@ -21,7 +21,7 @@ class TilingView: UIView
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        backgroundColor = UIColor.clearColor()
+        backgroundColor = UIColor.clear
         
         if let tiledLayer = layer as? CATiledLayer
         {
@@ -36,35 +36,33 @@ class TilingView: UIView
 
     // Only override drawRect: if you perform custom drawing.
     // An empty implementation adversely affects performance during animation.
-    override func drawRect(rect: CGRect) {
+    override func draw(_ rect: CGRect) {
         // Drawing code
         
         let tileSize = Config.tileSize
         
-        let firstCol = Int(floor(CGRectGetMinX(rect) / tileSize.width))
-        let lastCol = Int(floor((CGRectGetMaxX(rect)-1) / tileSize.width))
-        let firstRow = Int(floor(CGRectGetMinY(rect) / tileSize.height))
-        let lastRow = Int(floor((CGRectGetMaxY(rect)-1) / tileSize.height))
+        let firstCol = Int(floor(rect.minX / tileSize.width))
+        let lastCol = Int(floor((rect.maxX-1) / tileSize.width))
+        let firstRow = Int(floor(rect.minY / tileSize.height))
+        let lastRow = Int(floor((rect.maxY-1) / tileSize.height))
         
-        for (var row = firstRow; row <= lastRow; row++)
-        {
-            for (var col = firstCol; col <= lastCol; col++)
-            {
-                var tileRect = CGRectMake(tileSize.width * CGFloat(col), tileSize.height * CGFloat(row),
-                    tileSize.width, tileSize.height)
+        for row in firstRow..<lastRow + 1 {
+            for col in firstCol..<lastCol + 1 {
+                var tileRect = CGRect(x: tileSize.width * CGFloat(col), y: tileSize.height * CGFloat(row),
+                    width: tileSize.width, height: tileSize.height)
                 
-                if CGRectIntersection(rect, tileRect) != CGRectNull
+                if rect.intersection(tileRect) != CGRect.null
                 {
                     if let tile = tileAt(col, row)
                     {
-                        tileRect = CGRectIntersection(bounds, tileRect)
+                        tileRect = bounds.intersection(tileRect)
                         
-                        tile.drawInRect(tileRect)
+                        tile.draw(in: tileRect)
                         
                         if Config.showTileLines
                         {
                             let bpath = UIBezierPath(rect: tileRect)
-                            UIColor.grayColor().set()
+                            UIColor.gray.set()
                             bpath.stroke()
                         }
                     }
@@ -74,12 +72,12 @@ class TilingView: UIView
 
     }
 
-    func tileAt(col: Int, _ row: Int) -> UIImage?
+    func tileAt(_ col: Int, _ row: Int) -> UIImage?
     {
         let cachedTilesPath = ImageCreator.cachedTilesPath(pageIdx)
         
         let path = "\(cachedTilesPath)/\(col)_\(row).png"
-        if NSFileManager.defaultManager().fileExistsAtPath(path)
+        if FileManager.default.fileExists(atPath: path)
         {
             return UIImage(contentsOfFile: path)
         }
